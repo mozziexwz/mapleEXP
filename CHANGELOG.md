@@ -1,307 +1,307 @@
-# Changelog
+# 更新日志
 
 ## 0.9.16-beta
 
-**No Reset**
-- A new switch, **No Reset**, next to Log this run (also in Settings, and as a hotkey you can set; it has no key by default). It's for farming that moves between maps: changing maps no longer pauses or starts new numbers. A break with no EXP still pauses as usual, and the numbers carry on after it. The status pill says "· No Reset" while it's on.
-- A log line made with it on names every map it covered ("Map A/Map B"). A 15-minute run with No Reset on at any moment counts in your log but stays on your PC: it's never shared with the best-maps site.
+**不重置**
+- 新增开关**不重置**，位于“记录本次”旁边（设置中也有，还可以设置快捷键，默认无按键）。适用于在多个地图间切换的刷怪：换地图不再暂停，也不会重新开始计数。没有经验的间断仍会照常暂停，之后数字会接着继续。开启时状态胶囊会显示“· 不重置”。
+- 开启不重置期间产生的日志行会写出它涵盖的所有地图（“地图A/地图B”）。任何时刻开启过不重置的 15 分钟记录会计入你的日志，但只保存在你的电脑上：绝不会分享给最佳地图网站。
 
-**The game's "Default Ratio (Filter Applied)"**
-- The overlay notices by itself, after a few seconds, when this game setting is on, and then reads the EXP number, party size, map name, mesos and potion counts the way the game draws them with it.
-- Checked on recordings of real play with the setting switched on and off at five window sizes, two of them kept aside and never used for tuning: no wrong number caused by the setting.
-- While it isn't known yet whether the setting is on, a party list that can only be seen the filtered way is never read as solo.
+**游戏的“默认比例（已应用过滤器）”**
+- 当这个游戏设置开启时，悬浮窗会在几秒后自动发现，然后按游戏在该设置下的绘制方式读取经验数字、队伍人数、地图名、金币和药水数量。
+- 已在真实游戏录像上验证：在五种窗口大小下开关该设置，其中两种留作验证、从未用于调参：没有因该设置造成的错误数字。
+- 在尚不清楚该设置是否开启时，只能按过滤后的样子看到的队伍列表绝不会被读成单人。
 
-**Fewer wrong numbers (with or without the setting)**
-- Map name: a name that isn't on the game's map list is only taken when every try reads it the same. At some sizes (for example a 1920x1200 window) this means the map name is shown as not read more often, instead of misspelled.
-- Mesos: a front digit hidden under the mouse cursor is far less often read as a smaller amount. In a storage window, only your own amount is read (or nothing, when it can't tell which one is yours).
-- The status no longer turns red with "Can't read the EXP bar" right after a level-up, while the bar is under about 0.2% (thanks to cpaez33).
+**更少的错误数字（无论是否开启该设置）**
+- 地图名：不在游戏地图列表中的名称，只有每次尝试读到的结果都相同时才会采用。在某些大小下（例如 1920x1200 窗口），这意味着地图名更常显示为“未读取”，而不是拼写错误。
+- 金币：被鼠标指针挡住的首位数字，现在很少再被读成较小的数额。在仓库窗口中，只读取你自己的数额（分辨不出哪个是你的时就不读）。
+- 升级后经验条不足约 0.2% 时，状态不再立刻变红并提示“无法读取经验条”（感谢 cpaez33）。
 
-**Mac download (a test)**
-- Each release now also has a Mac download for macOS 14 or newer, for Apple Silicon and for Intel, built by GitHub like the Windows one and checked the same way. It comes from fabriciorby's work; cpaez33 made it find the game opened by Nexon's Mac app, read the game window on its own (windows on top of it don't get in the way), and say when the Screen Recording permission is missing.
-- I don't have a Mac, so I haven't tested it myself. See On macOS in the README, and please tell me if it works.
+**Mac 版下载（测试）**
+- 每个发布版现在都附带适用于 macOS 14 或更新版本的 Mac 下载，分 Apple Silicon 和 Intel 两种，与 Windows 版一样由 GitHub 构建并以同样方式校验。它源自 fabriciorby 的工作；cpaez33 让它能找到由 Nexon Mac 应用打开的游戏、自行读取游戏窗口（上方有其他窗口也不影响），并在缺少“屏幕录制”权限时提示。
+- 我没有 Mac，所以没有亲自测试过。请见 README 中“在 macOS 上”一节，并请告诉我能否正常使用。
 
-**Health reports (only if you said yes)**
-- They also count how many looks saw the game's "Default Ratio (Filter Applied)" on, off, not known yet, or at a size where it changes nothing. Still numbers only. See Privacy in the README.
+**运行状况报告（仅在你同意时）**
+- 现在还会统计有多少次查看发现游戏的“默认比例（已应用过滤器）”是开启、关闭、尚未得知，或处于它不起作用的大小。仍然只含数字。见 README 中的隐私一节。
 
 ## 0.9.15-beta
 
-**EXP and party size, read the new way**
-- The EXP number is now read with the game's own font (the reader that ran as a test since 0.9.13 and agreed with the old one on almost every look). When it can't read the bar, the older reader still does, with the same checks as before.
-- The party size is now counted by the exact shape of the party list's HP bars and the panel's lines around them. The older count is still used at UI sizes the new one can't read (fullscreen 900-1024 pixels tall with UI Size Default).
-- If the party list is covered or gone for a moment, the last party size is kept for about 15 seconds, and the status line says "Can't see the party list: party size kept at N". If it can't be read at all, no party size is guessed.
-- A 15-minute run is only shared once the overlay has read your party size (before that, "solo" was only a default). Such a run still counts in your log.
-- Both new readers were checked on recordings of real play (0 wrong EXP numbers on 152 pictures in 56 kinds of picture damage; 1 party size off by a first look out of 1,507 pictures, against 11 for the old count).
+**经验和队伍人数：全新的读取方式**
+- 经验数字现在用游戏自己的字体读取（这个读取器自 0.9.13 起以测试方式运行，几乎每次都与旧读取器一致）。当它读不出经验条时，旧读取器仍会接手，检查方式与以前相同。
+- 队伍人数现在根据队伍列表血条的精确形状及其周围面板的线条来计数。在新方式读不了的 UI 大小（全屏 900-1024 像素高且 UI 大小为默认）下，仍使用旧的计数方式。
+- 如果队伍列表暂时被遮住或消失，会保留上一次的队伍人数约 15 秒，状态行会提示“看不到队伍列表：队伍人数保持为 N”。如果完全读不出来，则不会猜测队伍人数。
+- 只有悬浮窗读到你的队伍人数后，15 分钟记录才会被分享（此前“单人”只是默认值）。这样的记录仍会计入你的日志。
+- 两个新读取器都在真实游戏录像上验证过（56 种画面损坏下的 152 张图片中经验数字错误 0 个；1,507 张图片中首次查看时队伍人数有 1 个偏差，旧的计数方式是 11 个）。
 
-**Clearer messages and bug reports**
-- If the bottom of the game window is off every screen, the status says so instead of "can't find the EXP bar".
-- The warning that the game window is bigger than your screen no longer shows when it fits on another screen (a portrait screen next to a wide one, for example).
-- Send to the developer shows a report number after sending, with buttons for GitHub issues and Reddit if you'd like a reply.
-- A bug report now says how the potion bar was read: the layout, the UI size, each slot's item and count (or why it wasn't read), the potion cost line and which shipped items have your own price (never the prices).
+**更清晰的提示和错误报告**
+- 如果游戏窗口底部超出了所有屏幕，状态会直接说明，而不是提示“找不到经验条”。
+- 当游戏窗口在另一块屏幕上能放下时（例如竖屏旁边一块宽屏），不再显示“游戏窗口比你的屏幕大”的警告。
+- “发送给开发者”发送后会显示一个报告编号，并提供 GitHub issues 和 Reddit 按钮，方便你想要回复时使用。
+- 错误报告现在会说明药水栏是如何被读取的：布局、UI 大小、每个格子的物品和数量（或没读到的原因）、药水花费那一行，以及哪些自带物品设置了你自己的价格（绝不含价格本身）。
 
-**For people who change the code**
-- The README explains what to change before sharing a changed copy (its own website address and version). The website takes runs, health reports and bug reports only from released versions of the overlay.
+**给修改代码的人**
+- README 说明了分享修改版之前该改什么（它自己的网站地址和版本号）。网站只接受来自悬浮窗正式发布版的记录、运行状况报告和错误报告。
 
 ## 0.9.14-beta
 
-**Potions on every bar**
-- Potion counts now work on the controller bar (Standard or Cross-Style) as well as the keyboard bar, with the game's UI Size on Default or Ideal. The overlay recognises the bar by itself, and you can switch while it runs.
-- Counts are read with the game's own font. Skill icons on the bar aren't mistaken for potions, and a count whose last digits are hidden (like "22" for "224" under the mouse cursor) isn't counted as drinking.
-- If the potion cost can't be worked out, it says why instead of showing 0: "Potion bar not seen" (no bar for a minute) or "No price for: ..." (type a price under Settings, Potions, Prices).
+**所有药水栏都支持**
+- 药水数量现在除键盘栏外，也支持手柄栏（标准或十字风格），游戏 UI 大小为“默认”或“理想”均可。悬浮窗会自动识别是哪种栏，运行中也可以切换。
+- 数量用游戏自己的字体读取。栏上的技能图标不会被误认为药水，数量末尾几位被遮住（例如 224 被鼠标指针遮成“22”）时也不会被算作喝药。
+- 如果无法计算药水花费，会说明原因而不是显示 0：“未看到药水栏”（一分钟内没有看到栏）或“没有价格：……”（请在设置 > 药水 > 价格中输入价格）。
 
-**Your level**
-- The orange LV badge (used when the EXP bar shows only a %) is read with the game's own font instead of the text reader.
+**你的等级**
+- 橙色的 LV 徽章（在经验条只显示 % 时使用）现在用游戏自己的字体读取，而不是用文字读取器。
 
-**Steadier**
-- Your log is never saved over while antivirus or OneDrive holds the file for a moment; changes wait and are saved once it can be read.
-- Settings is never taller than your screen and scrolls when needed (the bottom buttons were out of reach on 1080p). A Size too big for your screen uses the biggest that fits there; your choice is kept for a bigger screen.
-- A monitor plugged in or out while the overlay runs is noticed within a minute.
-- A log or settings file saved by another editor (with a BOM), a hand-edited number no play could reach, a damaged map list, or odd release notes no longer break anything.
-- The log window is never taller than your screen, and long values in Details are cut with "…".
-- A bug report's picture of the whole game (it can show chat and names) is deleted 5 minutes after the report opens, or at the next start.
+**更稳定**
+- 当杀毒软件或 OneDrive 暂时占用文件时，你的日志绝不会被覆盖；改动会等待，在文件可读后再保存。
+- 设置窗口不会比你的屏幕更高，需要时可滚动（此前在 1080p 下底部按钮够不着）。大小设得超出屏幕时，会使用在该屏幕上能放下的最大尺寸；你的选择会保留，换到更大的屏幕时仍会生效。
+- 悬浮窗运行时插拔显示器，会在一分钟内被发现。
+- 由其他编辑器保存的日志或设置文件（带 BOM）、手工编辑成任何游玩都不可能达到的数字、损坏的地图列表，或奇怪的发布说明，都不会再导致问题。
+- 日志窗口不会比你的屏幕更高，详情中过长的值会用“…”截断。
+- 错误报告附带的整个游戏画面图片（可能显示聊天和名字）会在报告打开 5 分钟后，或下次启动时删除。
 
-**Health reports (only if you said yes)**
-- They also count how many looks were at each game UI size (Default or Ideal) and potion bar layout (keyboard or controller), and how often new test readers for mesos and party size agree with the current ones. Still numbers only: never amounts, names or pictures. See Privacy in the README.
+**运行状况报告（仅在你同意时）**
+- 现在还会统计在每种游戏 UI 大小（默认或理想）和药水栏布局（键盘或手柄）下各查看了多少次，以及新的金币和队伍人数测试读取器与现有读取器吻合的频率。仍然只含数字：绝不含数额、名字或图片。见 README 中的隐私一节。
 
-**Best-maps website**
-- The top 5 maps show first, with Show more maps under them. Early data (fewer than 3 players) is hidden until you untick Hide early data. A map's details show EXP/hr by party size.
+**最佳地图网站**
+- 默认先显示前 5 张地图，下方有“显示更多地图”。早期数据（少于 3 位玩家）会被隐藏，直到你取消勾选“隐藏早期数据”。地图详情会显示按队伍人数划分的经验/小时。
 
 ## 0.9.13-beta
 
-**Fewer reading problems**
-- One part that can't be read (map name, class, mesos, potions, level badge) never stops the others: EXP keeps reading, and the status line says which part is having trouble.
-- A stuck or missing Tesseract (the text reader) no longer freezes the EXP display, and the message says what's wrong and how to fix it (a missing `eng.traineddata`, or a folder name with unusual characters).
-- The overlay keeps starting even if a folder on your PC can't be looked into, and the reading tries again if Windows briefly refuses the screen capture.
+**更少的读取问题**
+- 某一部分读不出来（地图名、职业、金币、药水、等级徽章）不会再影响其他部分：经验仍会继续读取，状态行会说明是哪一部分有问题。
+- Tesseract（文字读取器）卡住或缺失，不再导致经验显示冻结，并且提示会说明问题所在及解决方法（缺少 `eng.traineddata`，或文件夹名含特殊字符）。
+- 即使电脑上某个文件夹无法访问，悬浮窗仍能启动；Windows 偶尔拒绝屏幕截取时，读取会重试。
 
-**High levels (a bar with only a percentage, about Lv 57+)**
-- Leveling up from the last level with an EXP number to the first one with only a % no longer gets stuck on "level changed".
-- Runs at these levels count in the log and on the overlay (they showed 0). They're still never shared.
-- A window over the LV badge now says so and offers Settings, Level fallback; Reset and switching to Select area forget the old level.
-- A partly covered name row no longer starts the session over by itself.
+**高等级（只显示百分比的经验条，约 Lv 57 以上）**
+- 从最后一个有经验数字的等级升到第一个只有 % 的等级时，不再卡在“等级变化”。
+- 这些等级的记录现在会计入日志和悬浮窗（此前显示 0）。它们仍然绝不会被分享。
+- 有窗口遮住 LV 徽章时，现在会明确提示，并指引到设置中的“等级备用值”；重置以及切换到选择区域会忘掉旧的等级。
+- 名字行被部分遮住时，不再自动重新开始会话。
 
-**Health reports (your choice, off until you say yes)**
-- Once a day the overlay can send numbers about how well it reads your screen: how many looks read fine, screen and game size, how long a look takes, which error types happened. Never pictures, names, chat, map names or your log. It uses its own random ID, not linked to shared runs. It asks once; change it any time in Settings. See Privacy in the README.
+**运行状况报告（由你决定，在你同意前保持关闭）**
+- 悬浮窗每天可以发送一次关于读取屏幕效果的数字：有多少次查看读取正常、屏幕和游戏大小、一次查看耗时、出现了哪些错误类型。绝不含图片、名字、聊天、地图名或你的日志。它使用自己的随机 ID，与分享的记录无关联。只会询问一次；可随时在设置中更改。见 README 中的隐私一节。
 
-**Send a report without GitHub**
-- Report a bug, then **Send to the developer**: type what went wrong and send it. It shows exactly what is sent first. Text only, at most 3 a day.
-- Bug reports (both ways) now remove your Windows user name and folders from file paths in error messages too.
+**无需 GitHub 也能发送报告**
+- 点击“报告错误”，再选择**发送给开发者**：输入出了什么问题并发送。发送前会准确显示将发送的内容。仅文字，每天最多 3 份。
+- 两种方式的错误报告现在也会从错误信息的文件路径中去掉你的 Windows 用户名和文件夹。
 
-**A new EXP reader, tested quietly**
-- A new way to find and read the EXP bar (by shape, not colour) runs in the background and only notes whether it agrees with the current one. It changes nothing you see; if it costs too much CPU on your PC it slows down or switches itself off.
+**全新的经验读取器，静默测试中**
+- 一种新的查找和读取经验条的方式（按形状，而非颜色）在后台运行，只记录它与现有读取器是否一致。它不会改变你看到的任何内容；如果在你的电脑上占用过多 CPU，它会自动减速或关闭。
 
 ## 0.9.12-beta
 
-**Hotfix: an EXP bar that shows only a percentage**
-- Players at high levels (about Lv 57 and up, where a level needs a million EXP or more) reported that the overlay found no EXP bar. From there the game shows only the percentage, like `EXP. [58.47%]`, with no EXP number, and the overlay needed the number. It reads that bar now.
-- Your level comes from the orange **LV** badge on the status bar. EXP is then worked out from your level's EXP and the percentage, so EXP/hr, last 5 minutes, gained and current are estimates, and show a ≈ in front (in your log too).
-- If the badge can't be read, it keeps your level from before the number went away, but only for the same character: it compares a small picture of the name row, which only lives in memory. It never reads, saves or sends your character's name.
-- If that fails too, **Settings, Level fallback** lets you type your level. It lasts for this session only.
-- Estimates stay on your PC: a run made from a percentage alone is never shared with the best-maps website.
-- Fixed an error in the status line before the first EXP reading.
+**热修复：只显示百分比的经验条**
+- 高等级玩家（约 Lv 57 及以上，升级需要一百万以上经验）反映悬浮窗找不到经验条。从那里开始游戏只显示百分比，如 `EXP. [58.47%]`，没有经验数字，而悬浮窗需要这个数字。现在已经能读取这种经验条。
+- 你的等级来自状态栏上的橙色 **LV** 徽章。经验则由你等级所需经验和百分比推算，所以经验/小时、近 5 分钟、已获得和当前都是估算值，前面会显示 ≈（日志中也是）。
+- 如果读不出徽章，它会保留数字消失之前的等级，但仅限同一角色：它比较的是名字行的一张小图，这张图只存在于内存中。它绝不会读取、保存或发送你的角色名。
+- 如果这也失败，可在**设置 > 等级备用值**中输入你的等级。仅在本次会话中有效。
+- 估算值只保存在你的电脑上：仅由百分比得出的记录绝不会分享给最佳地图网站。
+- 修复了第一次读取经验之前状态行出现的一个错误。
 
 ## 0.9.11-beta
 
-**Mesos/hr you can trust**
-- Mesos you spend or move at an NPC shop, storage or a trade are left out of mesos/hr (the status line says what was left out). Only mesos you pick up count.
-- The inventory doesn't have to stay open: the first look sets the start, a later look adds what you earned since, and mesos/hr holds still while it is closed.
-- After a trip to town, open the inventory when it asks, so what you earned before the trip is kept.
-- Your log shows a stretch's mesos from the first to the last look at the inventory, however far apart.
+**可信的金币/小时**
+- 在 NPC 商店、仓库或交易中花费或转移的金币不再计入金币/小时（状态行会说明排除了什么）。只有你拾取的金币才算。
+- 背包不需要一直打开：第一次查看确定起点，之后的查看加上这期间赚到的金币，背包关闭时金币/小时保持不变。
+- 回城之后，请在提示时打开背包，这样回城前赚到的金币才能保留。
+- 你的日志会显示某一段时间内从第一次到最后一次查看背包之间的金币，无论间隔多久。
 
-**Potion cost and net mesos/hr: what you really make**
-- Mesos/hr says what you pick up. **Net mesos/hr** takes off what the potions and food you drink cost, so you can see which map really pays. Example: 300,000 mesos/hr, and in that hour 200 Red Potions (50 each) and 30 Blue Potions (220 each) = 16,600 in potions, so net is **283,400 mesos/hr**.
-- **Keep the potions you use on the quick-slot bar**, the hotkey slots at the bottom right of the game, so their counts show. The overlay reads that bar every 3 seconds: when a count goes down (326 to 325), that's one used. Potions that are only in your inventory window aren't seen. Skills, empty slots and other items (stars, scrolls, pet food) are ignored.
-- **It counts only while tracking is on** and EXP is coming in. Paused or in town, nothing counts. Buying or looting more of a potion (its count going up) is never a use. Reset starts the count again from zero.
-- **Prices** are the NPC shop prices (Red Potion 50, Orange 150, White 350, Blue 220, Elixir 3,000...). Potions no NPC sells (Mana Elixir, Power Elixir, Sap of Ancient Tree, Drake's Blood...) count as free until you type what you pay for them: **Settings, Potions, Prices**. If you set a shop potion you used to 0, net shows a dash and the status line asks for a price.
-- **Where you see it:** a Net / hr tile in the full view (next to Last 5 min, Mesos / hr and Elapsed), Potion cost and Net mesos / hr in Details, a Net/hr column in your log, and a small "net" in the Square, Wide and Bar shapes. It shows the cost in mesos, never a count of potions.
-- Don't want it? Switch it off in **Settings, Potions**: potions aren't counted and no net is shown.
-- Potion data stays on your computer: nothing about it is sent to the best-maps website.
+**药水花费和净金币/小时：你真正的收入**
+- 金币/小时表示你拾取的金币。**净金币/小时**会扣除你喝掉的药水和食物的花费，这样你就能看出哪张地图真正赚钱。例如：每小时 300,000 金币，这一小时喝了 200 个红药水（每个 50）和 30 个蓝药水（每个 220），共 16,600 的药水花费，所以净值是**每小时 283,400 金币**。
+- **请把你使用的药水放在快捷栏上**，也就是游戏右下角的快捷键栏，这样才能显示数量。悬浮窗每 3 秒读取一次这个栏：数量减少（326 变成 325）就算使用一个。只放在背包窗口里的药水是看不到的。技能、空格子和其他物品（飞镖、卷轴、宠物饲料）会被忽略。
+- **只在追踪开启且正在获得经验时统计。** 暂停或在城镇时不统计。购买或拾取更多药水（数量增加）绝不算使用。重置会从零重新开始计数。
+- **价格**采用 NPC 商店价格（红药水 50、橙药水 150、白药水 350、蓝药水 220、万能药 3,000……）。没有 NPC 出售的药水（魔力万能药、力量万能药、古树树液、龙之血……）在你输入实际购买价之前按免费计算：**设置 > 药水 > 价格**。如果你把用过的商店药水设为 0，净值会显示破折号，状态行会请你填写价格。
+- **在哪里看到：** 完整视图中的“净值 / 小时”磁贴（在近 5 分钟、金币 / 小时和已用时间旁边）、详情中的药水花费和净金币 / 小时、日志中的净值/时一列，以及方形、宽屏和长条形状中的小“净”字。它显示的是金币花费，绝不是药水数量。
+- 不想要？可在**设置 > 药水**中关闭：不统计药水，也不显示净值。
+- 药水数据只保存在你的电脑上：任何相关内容都不会发送给最佳地图网站。
 
-**Clean runs for the best-maps website**
-- A run counts for the website only after 15 minutes on one map without a break: 15 seconds without EXP ends it, whatever your log's gap setting (your log still uses your setting).
-- A run where a shop, storage or trade window was open is kept in your own records and never shared.
-- A run is sent with mesos only when the inventory was looked at when it started and within 30 seconds after it ended. Otherwise it is sent with EXP only. Mesos that look impossible (below zero, over 20M an hour, or a reading that later snapped back) are never sent.
-- If you pause right after a run while it waits for that look, it asks: "Open the inventory now so your run is logged for the website." It waits 7 seconds.
-- The website now ignores mesos it can't trust (from older overlay versions, a week after this release), and its map figures use the last 60 days.
+**为最佳地图网站提供干净的记录**
+- 一次记录只有在同一地图上不间断刷怪 15 分钟后才对网站有效：15 秒没有经验就会结束它，无论你日志中的间隔设置如何（你的日志仍使用你的设置）。
+- 期间打开过商店、仓库或交易窗口的记录会保留在你自己的记录中，绝不会被分享。
+- 只有当开始时和结束后 30 秒内查看过背包，记录才会连同金币一起发送，否则只发送经验。看起来不可能的金币（低于零、每小时超过 2000 万，或后来又跳回去的读数）绝不会发送。
+- 如果你在一轮刚结束、它在等待那次查看时暂停，它会提示：“现在请打开背包，以便本次记录能提交到网站。”它会等待 7 秒。
+- 网站现在会忽略它无法信任的金币（来自旧版悬浮窗，在本次发布一周后生效），并且地图数据使用最近 60 天。
 
 ## 0.9.10-beta
 
-**When the minimap's name is covered**
-- After 3 seconds without the minimap's name, the status line says so ("Can't see the minimap's name. Still tracking...") and says when it is back. A short cover changes nothing in your run; it still pauses after 45 seconds.
-- While the name is hidden, nothing new is saved to the log. If the name comes back on the same map, the hidden time counts. If it comes back on a different map, the stretch that was in progress is dropped (stretches already saved stay as they were), so the new map's EXP is never saved under the old map.
-- It looks for a missing name every second (was every 3), and retries an unreadable one every 2 seconds (was 5).
+**小地图名称被遮住时**
+- 3 秒看不到小地图名称后，状态行会说明（“看不到小地图名称。仍在追踪……”），并在恢复后告知。短暂的遮挡不会改变你的这一轮；45 秒后仍会暂停。
+- 名称被遮住期间，不会向日志保存任何新内容。如果名称在同一张地图上恢复，被遮住的时间会计入。如果在另一张地图上恢复，正在进行的那一段会被丢弃（已保存的段落保持原样），这样新地图的经验绝不会被存到旧地图名下。
+- 现在每秒查找一次缺失的名称（原来是每 3 秒），读不出来的名称每 2 秒重试一次（原来是 5 秒）。
 
-**Compact shapes and what's new**
-- **Compact mode has three shapes:** **Square** (as before), **Wide** (longer sideways, with a row of four numbers like a streamer's tracker) and **Bar** (one thin strip). Pick one in Settings, under Compact shape. The full view and the log are unchanged.
-- **A new install picks its shape on the first launch**, from three small pictures.
-- **A short "What's new" window** shows once after you update to a new version (never on a first install).
+**精简形状和新功能页**
+- **精简模式有三种形状：** **方形**（和以前一样）、**宽屏**（横向加长，一行四个数字，像主播用的追踪器）和**长条**（一条细长条）。请在设置的精简模式形状中选择。完整视图和日志不变。
+- **全新安装会在首次启动时选择形状**，从三张小图中挑选。
+- 更新到新版本后会显示一次简短的**“新功能”窗口**（首次安装绝不会显示）。
 
-**New address**
-- The best-maps website is now at **mcwo.app** (opening the old maple-classic-exp-overlay.pages.dev page now sends you there; older overlays keep working on the old address for now). The overlay's Best maps button and sharing use the new one.
+**新地址**
+- 最佳地图网站现在位于 **mcwo.app**（打开旧的 maple-classic-exp-overlay.pages.dev 页面会跳转到那里；较旧的悬浮窗暂时仍可在旧地址工作）。悬浮窗的“最佳地图”按钮和分享功能使用新地址。
 
-**Cleaner map names**
-- A map's name is now put right against the game's own list of maps (from meowdb.com, thank you): OCR slips like "ist Accompaniment" for "1st Accompaniment" or "Boar Il" for "Boar II" become one map, in your log and on the best-maps site. A map that isn't on the list (an event map, a new map) is used as it was read.
-- **The minimap's name can't be seen** (hidden, covered): after 45 seconds the overlay pauses instead of carrying on under the map you were on before, and carries on when it can read the name again. (This is likely why a town like Perion could end up in people's logs.)
-- **Towns** aren't logged ("In a town: nothing is logged here"), and the site turns town runs down.
+**更整洁的地图名**
+- 地图名现在会与游戏自己的地图列表（来自 meowdb.com，谢谢）严格对应：OCR 的小错误，例如把“1st Accompaniment”读成“ist Accompaniment”、把“Boar II”读成“Boar Il”，现在会合并为同一张地图，在你的日志和最佳地图网站上都是如此。不在列表中的地图（活动地图、新地图）则按读到的原样使用。
+- **看不到小地图名称**（被隐藏、被遮住）时：45 秒后悬浮窗会暂停，而不是继续算在你之前所在的地图下，并在能再次读到名称时继续。（这很可能就是像 Perion 这样的城镇会出现在人们日志里的原因。）
+- **城镇**不会被记录（“在城镇中：此处不记录日志”），网站也会拒绝城镇的记录。
 
-**The best-maps website: harder to fake**
-- A new player's runs start counting a day after their first, and after 4 runs, so made-up players can't change the numbers at once. Runs from a banned player are refused and hidden.
-- Runs are checked before anything is stored: the job must be a real job, the map name plain English text (adverts, links and look-alike letters are turned down), and EXP and mesos must be believable for the level.
-- One home's IPv6 addresses count as one connection, a day's new players and runs have a limit (so a flood can't use up the database), and nobody farms more than 12 different maps a day.
-- A map name the game doesn't list shows only once 3 players have shared it on 2 different days.
+**最佳地图网站：更难作假**
+- 新玩家的记录要在其首次记录一天之后、并且满 4 次记录后才开始计入，所以编造的玩家无法立刻改变数字。被封禁玩家的记录会被拒绝并隐藏。
+- 记录在存储前会经过检查：职业必须是真实的职业，地图名必须是普通英文文本（广告、链接和形似字母都会被拒绝），经验和金币必须与等级相符。
+- 同一个家庭的 IPv6 地址按一个连接计算，一天内的新玩家和记录有数量上限（防止被灌满数据库），并且没有人一天能刷超过 12 张不同的地图。
+- 游戏列表中没有的地图名，只有在 3 位玩家于 2 个不同的日子分享过之后才会显示。
 
-**The best-maps website**
-- **Include new players.** A new box in Best maps and the ladder shows the players who joined lately and don't count yet (they count for everyone after a day and 4 runs). Maps that use them say so, their dots are faded, and the header shows how many are new. Off by default; map names the game doesn't list never come from new players.
-- **A closer level range.** A map's numbers start from players within 3 levels of yours, and go to 5 or 8 only if the map needs more players to be ranked (the row says "wider range").
-- **% of a level per hour and time per level** on every map ("about 14 h per level"), which compares players at different levels.
-- **Sort** by EXP/hr, %/hr or mesos/hr, and **hide early data**.
-- **Details** under every map: solo vs party, EXP/hr at each level, and the last 7 days against before.
-- **Leveling ladder:** the best map for each 5 levels of your class and path.
-- **Copy link**: the address always holds your level, class, path and sort, so a view can be shared.
-- It tells you when the newest run was shared.
-- **Maps at your level come first**: maps that had to use players from further away (up to 8 levels) are listed under their own "Wider range" heading.
-- **Dots are coloured by the player's level** against yours (4+ lower, 1–3 lower, your level, 1–3 higher, 4+ higher), so you can see which level the high-EXP players are at, and hovering a dot or a level bar in Details says the level and number of players.
+**最佳地图网站**
+- **包含新玩家。** 最佳地图和升级阶梯中新增一个选项，显示最近加入、尚未计入的玩家（一天后且满 4 次记录，才会对所有人计入）。用到他们数据的地图会注明，他们的圆点会变淡，页头会显示有多少新玩家。默认关闭；游戏列表中没有的地图名绝不会来自新玩家。
+- **更窄的等级范围。** 一张地图的数字从你等级上下 3 级内的玩家开始，只有当这张地图需要更多玩家才能参与排名时才会放宽到 5 级或 8 级（该行会标明“范围更宽”）。
+- 每张地图都显示**每小时升级百分比和每级所需时间**（“约每级 14 小时”），便于比较不同等级的玩家。
+- 可按经验/小时、%/小时或金币/小时**排序**，也可以**隐藏早期数据**。
+- 每张地图下方有**详情**：单人对比组队、各等级的经验/小时，以及最近 7 天与此前的对比。
+- **升级阶梯：** 你的职业和路线每 5 个等级的最佳地图。
+- **复制链接：** 地址中始终包含你的等级、职业、路线和排序，所以可以分享一个视图。
+- 它会告诉你最近一条记录是什么时候分享的。
+- **你等级的地图排在前面：** 不得不使用更远等级（最多 8 级）玩家数据的地图，会列在各自的“范围更宽”标题下。
+- **圆点按玩家等级与你的差距着色**（低 4 级以上、低 1–3 级、同等级、高 1–3 级、高 4 级以上），这样你能看出高经验玩家处于哪个等级；悬停在圆点或详情中的等级条上会显示等级和玩家数。
 
 ## 0.9.9-beta
 
-**New**
-- **Smaller sizes:** Settings > Size now goes down to 70% and 60% (it was 80%). The smallest text stops at a readable size.
-- **Transparency stops at 40%.** More and the window could fade so far that you couldn't find Settings again. A higher saved value becomes 40%.
+**新增**
+- **更小的尺寸：** 设置 > 大小现在可以低至 70% 和 60%（原来是 80%）。最小的文字会停在可读的大小。
+- **透明度最高 40%。** 再高的话窗口可能淡到你找不回设置。已保存的更高数值会变成 40%。
 
-**Fixed**
-- **Hotkeys in Settings:** clicking one to change it could leave several looking selected (and the first click could fail with an error). Now only one waits for keys at a time: clicking another moves it, clicking the same one again (or Esc) cancels, and hotkeys come back right away if you turn them off or click away from Settings.
-- A long number in the three small panels (like 99,999,999) now shrinks to fit instead of running out of its box.
-- **Select area** crashed on Windows ("expected integer but got bold") since 0.9.7. It opens again.
+**修复**
+- **设置中的快捷键：** 点击一项来更改时，可能让好几项看起来都被选中（第一次点击还可能报错）。现在同一时间只有一项在等待按键：点击另一项会切换过去，再次点击同一项（或按 Esc）会取消；关闭快捷键或点击设置以外的地方时，快捷键会立即恢复。
+- 三个小面板中的长数字（如 99,999,999）现在会缩小以适应，而不是超出它的框。
+- 自 0.9.7 起，**选择区域**在 Windows 上会崩溃（“expected integer but got bold”）。现在又能打开了。
 
-**Better bug reports**
-- The report now also saves **bug-report.txt**: your screens and Windows scaling, the game window, where each part (EXP bar, mesos, minimap, party list) was found, how the reading thread is doing, what the overlay last said (with times), and the end of errors.log. At the top it lists what looks wrong, like "the overlay is covering the class name".
-- The picture now also shows where the class and map name are read, with a line on how each went. View capture shows the same, and says why the class wasn't read.
-- Optionally (it asks) a small picture of the whole game window, saved only if you say yes.
+**更好的错误报告**
+- 报告现在还会保存 **bug-report.txt**：你的屏幕和 Windows 缩放比例、游戏窗口、各部分（经验条、金币、小地图、队伍列表）是在哪里找到的、读取线程的运行情况、悬浮窗最后说了什么（带时间），以及 errors.log 的末尾。开头会列出看起来有问题的地方，例如“悬浮窗遮住了职业名”。
+- 图片现在还会显示职业和地图名是在哪里读取的，并附一行说明每项的情况。查看截取显示相同的内容，并说明职业为什么没读到。
+- 可选（会先询问）：一张游戏整个窗口的小图，只有你选择“是”才会保存。
 
 ## 0.9.8-beta
 
-**Lighter and more reliable**
-- **Far less CPU:** the overlay used a thread per core for tiny pictures, and the threads mostly waited on each other. It now uses one. In a test on a 1080p game window that took a normal look from about 100 ms of CPU to 12 ms, and the look at the whole window (every 4 seconds) from about 350 ms to 60 ms. How much you gain depends on your core count; the more cores, the more.
-- Reading the map name and your class asks Tesseract once instead of six times (about 4.5 times faster), with the same answers.
-- **Storage and trade windows:** they show a second mesos box next to yours, and the overlay could read that one instead. It now sees there are two, reads neither, and picks yours up again once the window closes (thanks to Xoere, whose recording showed it).
-- Map names and classes now also work when your Windows user name has letters your PC's text code page can't hold (some non-Latin names): Tesseract couldn't open its pictures there, so they were never read.
-- `pytesseract` isn't used any more: one less package in the download.
-- Thanks to thanhphamvan, whose fork's measurements pointed at the extra threads and the six Tesseract runs.
+**更轻量、更可靠**
+- **CPU 占用大幅降低：** 悬浮窗原先为处理微小的图片每个核心开一个线程，这些线程大多在互相等待。现在只用一个。在 1080p 游戏窗口上的测试中，一次普通查看的 CPU 耗时从约 100 毫秒降到 12 毫秒，对整个窗口的查看（每 4 秒一次）从约 350 毫秒降到 60 毫秒。具体提升取决于你的核心数；核心越多提升越大。
+- 读取地图名和你的职业时，只向 Tesseract 请求一次而不是六次（约快 4.5 倍），结果相同。
+- **仓库和交易窗口：** 它们会在你的金币框旁边显示第二个金币框，悬浮窗以前可能读成那一个。现在它能发现有两个，两个都不读，窗口关闭后再重新读取你自己的（感谢 Xoere，他的录像发现了这个问题）。
+- 当你的 Windows 用户名含有你电脑文本代码页无法容纳的字母（某些非拉丁字母的名字）时，地图名和职业现在也能正常工作：此前 Tesseract 无法在那里打开它的图片，所以从未被读到。
+- 不再使用 `pytesseract`：下载包里少了一个软件包。
+- 感谢 thanhphamvan，他的分支的测量数据指出了多余的线程和六次 Tesseract 运行。
 
-**A new look**
-- The whole overlay is redrawn: a big glowing EXP/hr, a live trend line (is your pace rising or falling vs the last 5 minutes?), a progress bar to your next level, a status pill (looking for the game / ready / tracking / paused), and one clear Start button. The title bar matches the window (Windows 10 and 11).
-- Less clutter: three key numbers up front (last 5 min, mesos/hr, elapsed); everything else is one click away under **Details**, and it remembers if you opened it.
-- "Don't log" is now a switch called **Log this run** (no more double negatives). Select area and View capture are under the **...** menu.
-- Log, notes, Settings and the update window match, with a bundled typeface (Manrope, SIL Open Font License), real switches, a gold slider and thin scrollbars.
-- **Compact mode shows mesos/hr** too, under the EXP/hr number, in the same window size.
-- Just as light as before: the numbers move pre-drawn pictures instead of redrawing, and nothing is redrawn while nothing changes.
+**全新外观**
+- 整个悬浮窗都重新绘制：发光的大号经验/小时、实时趋势线（你的速度与最近 5 分钟相比是上升还是下降？）、通往下一级的进度条、状态胶囊（正在寻找游戏 / 就绪 / 追踪中 / 已暂停），以及一个清晰的开始按钮。标题栏与窗口风格一致（Windows 10 和 11）。
+- 更少杂乱：前面是三个关键数字（近 5 分钟、金币/小时、已用时间）；其余一切都在**详情**里点一下就能看到，并且会记住你是否展开过。
+- “不记录”现在是一个叫**记录本次**的开关（不再有双重否定）。选择区域和查看截取在 **…** 菜单里。
+- 日志、备注、设置和更新窗口都与之匹配，使用了内置字体（Manrope，SIL 开放字体许可）、真正的开关、金色滑块和细滚动条。
+- **精简模式**也显示金币/小时，位于经验/小时数字下方，窗口大小不变。
+- 和以前一样轻量：数字移动的是预先绘制好的图片而不是重新绘制，没有变化时什么都不重绘。
 
 ## 0.9.7-beta
 
-**New**
-- **Notes on your log lines:** click a line and write a note about it in the box under the log. A ✎ in the new **Note** column marks lines that have one. Notes save as you type and **stay on your PC only**: they live in your log file, are never shared with the best-maps site, and the overlay's tests check that nothing the overlay sends can include them. Renaming a map (even when it merges two lines), farming more on a line, and updating keep your notes. Deleting a line asks first, and says its note goes too. Typing in the box doesn't trigger the hotkeys.
-- **A backup of your log each day** (the last 7, in a `backups` folder next to it), so a recent copy of your log and notes is always there.
-- **One log line per party**: playing a map in a party, people join and leave, and each party size used to get its own line. Now a map's party sizes on a day share one line (e.g. "4–5ppl ▸"), with EXP/hr and mesos/hr over all of that time. Click it to see a line for each party size, to compare them. Solo play keeps its own line. Your log itself isn't changed, only how it's shown.
-- **macOS** (running from source; thanks to thanhphamvan): works on a Mac with the game in CrossOver, Whisky, Parallels or a game stream. It finds the game window by itself, as on Windows. See "For developers" in the README. Hotkeys aren't available on macOS yet. It has only been tried with the game by its author; the maintainer has no Mac, so reports are welcome.
+**新增**
+- **日志行备注：** 点击一行，在日志下方的框里写下关于它的备注。带有备注的行会在新的**备注**列显示 ✎。备注随输入自动保存，并且**只保存在你的电脑上**：它们存在你的日志文件里，绝不会分享给最佳地图网站，悬浮窗的测试也会检查悬浮窗发送的任何内容都不可能包含它们。重命名地图（即使合并了两行）、在某一行上继续刷怪以及更新，都会保留你的备注。删除一行时会先询问，并说明它的备注也会一并删除。在框里输入不会触发快捷键。
+- **每天备份一次你的日志**（最近 7 份，位于它旁边的 `backups` 文件夹），这样总有一份较新的日志和备注副本。
+- **每个队伍一行日志：** 组队刷某张地图时，人会加入和离开，此前每种队伍人数都会各占一行。现在某张地图当天的各个队伍人数合并成一行（例如“4–5人 ▸”），经验/小时和金币/小时是这段时间的总和。点击它可以查看每个队伍人数各自的一行，方便对比。单人游玩仍保持自己的一行。你的日志本身没有改变，只是显示方式变了。
+- **macOS**（从源码运行；感谢 thanhphamvan）：可在 Mac 上配合 CrossOver、Whisky、Parallels 或游戏串流中的游戏使用。它会像在 Windows 上一样自动找到游戏窗口。见 README 中的“开发者文档”。macOS 上暂时没有快捷键。目前只有它的作者配合游戏试过；维护者没有 Mac，所以欢迎反馈。
 
-**Fixed**
-- Mesos: a small change across a digit boundary, like 9,980 to 10,020, is now counted instead of dropped (thanks to TaylorAdamCA).
-- Typing "!" in a note or a map name no longer triggers the Shift+1 hotkey.
+**修复**
+- 金币：跨越位数边界的小变化，如 9,980 变成 10,020，现在会被计入而不是被丢弃（感谢 TaylorAdamCA）。
+- 在备注或地图名中输入“!”不再触发 Shift+1 快捷键。
 
-**Safer**
-- Downloads are now built by GitHub from this code, never on a PC, from exact package files checked against their SHA-256. Each one gets an attestation anyone can check (`gh attestation verify`), and its SHA-256 is on the release page and on the build's page (the same one in all three places). See "Where the download comes from" in the README.
-- Built with Pillow 12.3, which fixes the problems published since 11.3. (The overlay never opens image files from elsewhere, so it wasn't affected, but now nothing is flagged.)
-- It never runs a `tesseract.exe` from the folder it happens to be started from, only its own or an installed one.
-- Sharing is off whenever the overlay runs in test mode (`MAPLE_EXP_DATA` set), so made-up test runs can never reach the real site.
+**更安全**
+- 下载包现在由 GitHub 根据这份代码构建，绝不在个人电脑上构建，使用的是用 SHA-256 校验过的指定软件包文件。每个都有一份任何人都能验证的证明（`gh attestation verify`），它的 SHA-256 同时出现在发布页面和构建页面上（三处完全一致）。见 README 中的“下载来自哪里”。
+- 使用 Pillow 12.3 构建，修复了自 11.3 以来公布的问题。（悬浮窗从不打开来自别处的图片文件，所以没有受影响，但现在不会再有任何告警。）
+- 它绝不会运行从启动时所在文件夹里找到的 `tesseract.exe`，只会运行自带的或已安装的那个。
+- 悬浮窗在测试模式下运行（设置了 `MAPLE_EXP_DATA`）时一律关闭分享，所以编造的测试记录绝不可能到达真实网站。
 
-**The best-maps website**
-- Security headers: browsers only run the site's own scripts, and other sites can't show it inside theirs.
-- Map names that are web addresses are turned down, and early data only shows map names at least 2 players have shared, so one person can't put a made-up name on the site.
-- Much lighter on its database (small summary tables, and answers shared between Cloudflare's locations), so it keeps working as more people use it.
-- Every player is a dot on a chart: each map's row shows what every player gets there, the typical EXP/hr, what the middle half of players get, and the runs left out as unusual. Point at (or tap) anything for the numbers.
-- Maps with fewer than 3 players are shown greyed out as early data, instead of "No maps here yet".
-- A bar at the top shows the latest runs players shared, one at a time; click one to see the best maps for that level, class and party. One run per player, only maps at least 2 players have shared, and nothing unusual, so made-up runs stay off the front page.
+**最佳地图网站**
+- 安全标头：浏览器只运行网站自己的脚本，其他网站也无法把它嵌入到自己的页面里。
+- 是网址的地图名会被拒绝，早期数据只显示至少 2 位玩家分享过的地图名，所以一个人无法在网站上放一个编造的名字。
+- 对数据库的压力小得多（小型汇总表，以及在 Cloudflare 各节点间共享的结果），所以用的人越多仍能正常工作。
+- 每位玩家都是图表上的一个圆点：每张地图的那一行会显示每位玩家在那里的收益、典型的经验/小时、中间一半玩家的收益，以及被当作异常而剔除的记录。指向（或点按）任何内容即可看到数字。
+- 少于 3 位玩家的地图会显示为灰色的早期数据，而不是“这里还没有地图”。
+- 顶部有一个条，逐条显示玩家最近分享的记录；点击一条可查看该等级、职业和队伍的最佳地图。每位玩家只有一条记录，只有至少 2 位玩家分享过的地图，并且不含任何异常数据，所以编造的记录不会出现在首页上。
 
 ## 0.9.6-beta
 
-**New**
-- **Compact mode** (the Compact button at the top, or Shift+4): a much smaller window with just EXP/hr, when you'll level, the last 5 minutes, mesos/hr and Start/Pause. The button then says Full, to bring everything back.
-- **Hotkeys**, while MapleStory or the overlay is in front: Shift+1 Start / Pause, Shift+2 Reset, Shift+3 Don't log, Shift+4 Compact. You can change them, or turn them off, in Settings.
-- **Size** in Settings: makes the text and the window smaller or bigger, from 80% to 200%, and changes right away. It stops at 80%, so it can't get too small to read or use.
+**新增**
+- **精简模式**（顶部的“精简”按钮，或 Shift+4）：一个小得多的窗口，只有经验/小时、何时升级、近 5 分钟、金币/小时和开始/暂停。此时按钮会变成“完整”，用来恢复全部内容。
+- **快捷键**，在 MapleStory 或悬浮窗位于最前时有效：Shift+1 开始 / 暂停，Shift+2 重置，Shift+3 不记录，Shift+4 精简。你可以在设置中更改或关闭它们。
+- 设置中的**大小**：让文字和窗口变小或变大，从 80% 到 200%，并立即生效。它最低停在 80%，所以不会小到看不清或没法用。
 
-**Fixed**
-- On a second screen with different Windows scaling (e.g. a 1440p screen at 125% next to a 5K one at 200%), the window was far too big. It's now sized for the screen it's on, and resizes when moved.
-- The Settings window could stay at its old size after the size changed, cutting its contents off. It now always fits, and opens over the overlay (on the same screen).
+**修复**
+- 在 Windows 缩放比例不同的第二块屏幕上（例如 125% 的 1440p 屏幕旁边有一块 200% 的 5K 屏幕），窗口大得离谱。现在会按它所在的屏幕调整大小，移动时也会重新调整。
+- 大小改变后，设置窗口可能还保持着旧的尺寸，导致内容被截断。现在它总是能完整容纳内容，并且会在悬浮窗上方打开（在同一块屏幕上）。
 
 ## 0.9.5-beta
 
-**Fixed**
-- Dying (losing a few % of your EXP) made EXP gained and EXP/hr go down, even below zero. Now the loss isn't counted: it says how much you lost and carries on.
-- A run the best-maps site turned down was sent again every 30 minutes, and enough of them could stop newer runs from being shared.
-- A log file edited by hand (or damaged) could stop the overlay from starting. Lines it can't use are now left out (a copy of the file is kept), and it starts as usual.
+**修复**
+- 死亡（损失几个 % 的经验）会让已获得经验和经验/小时下降，甚至低于零。现在这部分损失不再计入：它会告诉你损失了多少，然后继续。
+- 被最佳地图网站拒绝的记录会每 30 分钟重新发送一次，足够多的这类记录可能会阻止较新的记录被分享。
+- 手工编辑（或损坏）的日志文件可能导致悬浮窗无法启动。现在无法使用的行会被忽略（并保留文件副本），悬浮窗照常启动。
 
-**The best-maps website** (already live)
-- Checks every run harder: no more EXP than the levels it covers hold, and start times in a sensible range.
-- Only 6 players can share from one internet connection a day, so it's much harder to make up players.
-- Other websites can't make their visitors' browsers send runs.
-- The code kept for spam limits can no longer be turned back into an internet address.
+**最佳地图网站**（已上线）
+- 对每条记录检查得更严格：经验不能超过所涵盖等级所能容纳的上限，开始时间必须在合理范围内。
+- 每个互联网连接每天只允许 6 位玩家分享，所以编造玩家难得多。
+- 其他网站无法让其访客的浏览器发送记录。
+- 用于限制垃圾信息的代码不再能被还原成互联网地址。
 
 ## 0.9.4-beta
 
-**New**
-- **Best maps** link at the top of the overlay: opens the best-maps website already showing the maps for your level, party size and class.
-- **Runs for the best-maps site are 15 minutes** instead of an hour, so more of your farming counts (a break or a new map no longer throws away up to an hour).
-- **Smaller download:** 82 MB instead of 98 MB. Parts of the libraries it never used are left out.
-- **The best-maps website** fills in sooner: it now looks 5 levels either way, and counts parties of any size together (solo or party).
-- Downloads can now be built on GitHub straight from the code, the first step toward code signing (so Windows stops warning about new downloads).
+**新增**
+- 悬浮窗顶部的**最佳地图**链接：打开最佳地图网站，并已显示适合你的等级、队伍人数和职业的地图。
+- **提供给最佳地图网站的记录改为 15 分钟**，而不是一小时，所以你更多的刷怪数据能被计入（中断或换地图不再丢掉最多一小时的数据）。
+- **更小的下载包：** 82 MB，原来是 98 MB。去掉了从未用到的库的部分内容。
+- **最佳地图网站**更快填充数据：现在上下各看 5 个等级，并把任何人数的队伍合并统计（单人或组队）。
+- 下载包现在可以直接用代码在 GitHub 上构建，这是迈向代码签名的第一步（这样 Windows 就不会再对新下载的文件发出警告）。
 
 ## 0.9.3-beta
 
-**New**
-- **New name: Maple Classic Exp Overlay** (it was Maple EXP/hr). The program is now `Maple Classic Exp Overlay.exe`. Your log and settings carry over.
-- **Class**: read from the status bar (never your character's name), shown in the log, and different classes get separate lines.
-- **1-hour runs**: the overlay counts toward a full hour of non-stop farming on one map with the same party size, and saves each finished hour (these are what the best-maps site uses). A level-up doesn't stop a run; a break, a new map or a new party size starts it over.
-- **Best maps for your class**: if you agree (it asks once), finished 1-hour runs are shared anonymously with the new stats site, maple-classic-exp-overlay.pages.dev, which shows the best maps for each class and path (named after its 4th job, like Night Lord or Bishop), level and party size. You can change this in Settings.
-- **Sealed log**: every line the overlay writes is sealed, so lines edited or added by hand are greyed out, and an edited 1-hour run is never shared. Deleting a line, or renaming a map in the overlay, keeps everything else trusted.
+**新增**
+- **新名称：Maple Classic Exp Overlay**（原来叫 Maple EXP/hr）。程序现在是 `Maple Classic Exp Overlay.exe`。你的日志和设置会沿用。
+- **职业：** 从状态栏读取（绝不是你的角色名），显示在日志中，不同职业会分成不同的行。
+- **1 小时记录：** 悬浮窗会统计在同一张地图、同样队伍人数下不间断刷怪满一小时的进度，并保存每一个完成的小时（最佳地图网站用的就是这些）。升级不会打断一次记录；中断、换地图或更换队伍人数则会让它重新开始。
+- **你职业的最佳地图：** 如果你同意（只会问一次），完成的 1 小时记录会被匿名分享给新的统计网站 maple-classic-exp-overlay.pages.dev，该网站会按职业和路线（以四转职业命名，如夜行者或主教）、等级和队伍人数显示最佳地图。你可以在设置中更改。
+- **签章日志：** 悬浮窗写入的每一行都有签章，所以手工编辑或添加的行会变灰，被编辑过的 1 小时记录绝不会被分享。删除一行，或在悬浮窗中重命名地图，其余一切仍然可信。
 
-**Fixed**
-- The update window showed names with underscores wrong (e.g. explog.txt).
+**修复**
+- 更新窗口把带下划线的名称显示错了（例如 explog.txt）。
 
 ## 0.9.2-beta
 
-**New**
-- **Time** in the log: how long each line is based on, growing by 5 minutes with every update. Also in copied lines and `exp_log.txt`.
-- **Report a bug** button (in Settings and in View capture): opens a bug report on GitHub, already filled in with what the overlay was reading, plus a picture to drag in. Nothing is sent until you click Submit.
-- **Reset** now also looks for the minimap, inventory and party list again, so it picks them up after you move them.
+**新增**
+- 日志中的**时间**：每一行基于多长的数据，每次更新增加 5 分钟。复制的行和 `exp_log.txt` 中也有。
+- **报告错误**按钮（在设置和查看截取中）：在 GitHub 上打开错误报告页面，已填好悬浮窗读到的内容，并附有一张可拖入的图片。在你点击 Submit 之前不会发送任何东西。
+- **重置**现在也会重新寻找小地图、背包和队伍列表，所以你移动它们之后它也能重新找到。
 
-**Fixed**
-- The map name wasn't read when the overlay's window was right next to the minimap (but not covering it). The same is fixed for the party list.
+**修复**
+- 当悬浮窗窗口紧挨着小地图（但没有遮住它）时，读不到地图名。队伍列表的同类问题也已修复。
 
 ## 0.9.1-beta
 
-**New**
-- **Pauses by itself** when you get no EXP for 15 seconds (you can change this in Settings) or leave the map, and carries on at your next EXP gain. Paused time doesn't count toward EXP/hr. On a new map, the numbers start from zero.
-- **Don't log** button: keeps the current run out of the log while still showing everything. It turns itself off when the run ends.
-- **Update check:** tells you when a new version is out and what's new, so you can decide whether to update. You can turn it off, or check by hand, in Settings.
-- Your level shows within seconds of opening, and the time to your next level sits right under EXP/hr, like "Lv 31 in 36 min".
-- The log's columns can be resized, and the window can be made bigger while the log is open. Both are remembered.
+**新增**
+- 当你 15 秒没有获得经验（可在设置中更改）或离开地图时**自动暂停**，并在你下次获得经验时继续。暂停的时间不计入经验/小时。到了新地图，数字从零开始。
+- **不记录**按钮：让当前这一轮不写入日志，同时仍显示所有内容。这一轮结束时它会自动关闭。
+- **检查更新：** 新版本发布时告诉你，并说明新增了什么，让你决定是否更新。你可以在设置中关闭它，或手动检查。
+- 打开后几秒内就会显示你的等级，距下一级的时间就在经验/小时下方，例如“Lv 31 还需 36 分钟”。
+- 日志的列宽可以调整，日志打开时窗口也可以放大。两者都会被记住。
 
-**Fixed**
-- In a 1920x1080 window, the EXP number could be read with its first digits cut off.
-- Mesos weren't read when the overlay's window was close to (but not covering) the inventory, or when a see-through inventory was in front of a busy background.
+**修复**
+- 在 1920x1080 窗口中，经验数字可能因为开头几位被截掉而读错。
+- 当悬浮窗窗口靠近（但没有遮住）背包，或半透明的背包位于杂乱背景前时，读不到金币。
 
-**More reliable**
-- Much stronger protection against misread numbers, tested with thousands of simulated misreads and screenshots over many backgrounds: a misread can't pass for a level-up, a lost level, or extra mesos.
-- Clearer status messages. "Select area" and "Follow game" are now one button.
-- Safer saving: a damaged log file is backed up before anything is saved over it, and damaged settings fall back to the defaults.
+**更可靠**
+- 对读错数字的防护强得多，用成千上万次模拟读错和多种背景下的截图测试过：读错的数字不可能被当成升级、掉级或多出来的金币。
+- 状态提示更清晰。“选择区域”和“跟随游戏”现在是同一个按钮。
+- 更安全的保存：损坏的日志文件在被覆盖之前会先备份，损坏的设置会退回默认值。
 
 ## 0.9.0-beta
 
-First public beta.
+首个公开测试版。
 
-- Shows your EXP per hour, % per hour, EXP gained, and time to your next level.
-- Finds the MapleStory window by itself, at any window size, windowed or fullscreen.
-- Reads your mesos from the inventory, even while it's see-through during fights, and shows mesos per hour and per 5 minutes.
-- Notices whether you're solo or in a party, and how many people are in it.
-- Reads the map name from the minimap.
-- Keeps a log of your EXP/hr and mesos/hr for each day, map, level and party size, updated every 5 minutes of non-stop farming.
-- Settings for the break length, window transparency and always-on-top.
-- Saves your settings and log in `%APPDATA%\MapleEXP`, and writes problems to `errors.log` there.
+- 显示你的每小时经验、每小时百分比、已获得经验，以及距下一级的时间。
+- 自动找到 MapleStory 窗口，任何窗口大小、窗口化或全屏都可以。
+- 从背包读取你的金币，即使战斗中背包是半透明的也行，并显示每小时和每 5 分钟的金币。
+- 发现你是单人还是组队，以及队伍里有多少人。
+- 从小地图读取地图名。
+- 按天、地图、等级和队伍人数记录你的经验/小时和金币/小时，每不间断刷怪 5 分钟更新一次。
+- 可设置间断时长、窗口透明度和始终置顶。
+- 把你的设置和日志保存在 `%APPDATA%\MapleEXP`，并把问题写入那里的 `errors.log`。

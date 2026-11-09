@@ -14,6 +14,7 @@ os.environ["MAPLE_EXP_DATA"] = tempfile.mkdtemp()           # never touch your r
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import healthlog  # noqa: E402
 import maple_exp as m  # noqa: E402
+m.SEND_TO_STATS_SITE = True      # 中文版默认关闭发送；这些测试用本地假服务器验证发送逻辑
 assert Path(os.environ["MAPLE_EXP_DATA"]) == m.DATA_DIR, "tests must run on their own temp data folder, never on real data"
 
 failures = 0

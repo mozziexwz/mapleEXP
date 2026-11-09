@@ -639,7 +639,7 @@ try:
     reader.own_rect = (0, 800, 1920, 280)                    # this window on top of the bar
     r = reader._read_extras(FakeScreen(scene), (0, 0, 1920, 1080), blank)
     check("this window covering the potion bar is said, and nothing is read",
-          r.bar is not None and not r.bar.seen and "covering the potion bar" in (r.note or ""))
+          r.bar is not None and not r.bar.seen and "遮住了药水栏" in (r.note or ""))
     reader.own_rect = None
     reader.bar_last = None
     reader._tries = []
@@ -1655,7 +1655,7 @@ for cap_class, wanted in ((ScreenCapture, False), (SeeThrough, True)):
     r.last_rect, r.gh = rect_f, r.gh
     again = r._read_window(cap, rect_f)
     check(f"{cap.name} capture, our window over the EXP bar: " + ("still read, no covering message" if wanted else "covering message"),
-          again.confident if wanted else "covering" in again.where)
+          again.confident if wanted else "遮住" in again.where)
     check(f"{cap.name} capture: diagnostics() names the capture and still lists the EXP bar as covered",
           r.diagnostics()["capture"] == cap.name and "EXP bar" in r.diagnostics()["covering"])
 check("the bare fake screen is wrapped as a screen copy", isinstance(m.as_capture(FakeScreen(frame)), ScreenCapture)
@@ -1728,7 +1728,7 @@ check("if picturing the window alone fails, the screen is used, still without ev
       not any(x.candidates for x in got) and r.diagnostics()["capture"] == "screen")
 got, _ = read_through(OneWindow((50, 30, 1280, 720), None), on_screen)
 check("...and it says when this app's window is covering the bar, as a screen copy does",
-      not any(x.confident for x in got) and "covering" in got[-1].where)
+      not any(x.confident for x in got) and "遮住" in got[-1].where)
 
 class NoPermission(OneWindow):
     """Nexon's Mac app is found by its program name, which macOS shows without the Screen Recording permission."""

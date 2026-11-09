@@ -203,13 +203,13 @@ try:
     check("a data folder that can't be passed on: no_eng with the path reason", exe is None and state == "no_eng" and why == "path")
     m.tesseract_state, m.tesseract_why = "no_eng", "file"
     check("the 'file is missing' message names tessdata\\eng.traineddata and says EXP still works",
-          "tessdata\\eng.traineddata" in m.tesseract_note() and "EXP and mesos still work" in m.tesseract_note())
+          "tessdata\\eng.traineddata" in m.tesseract_note() and "经验和金币仍可正常使用" in m.tesseract_note())
     m.tesseract_why = "path"
     check("the 'unusual characters' message says to move the folder",
-          "unusual characters" in m.tesseract_note() and "C:\\Games\\" in m.tesseract_note())
+          "特殊字符" in m.tesseract_note() and "C:\\Games\\" in m.tesseract_note())
     m.tesseract_state, m.tesseract_why = "missing", ""
     check("the missing message keeps today's wording",
-          m.tesseract_note() == "Map names can't be read: Tesseract OCR is missing (see the README).")
+          m.tesseract_note() == "地图名无法读取：缺少 Tesseract OCR（见 README）。")
     m.tesseract_state = "ok"
     check("no message when Tesseract works", m.tesseract_note() == "")
 finally:
@@ -330,7 +330,7 @@ if sys.platform == "win32":
                 del kernel.GetShortPathNameW
             m.tesseract_state, m.tesseract_why = state, why
             check(f"odd letters and {what}: no Tesseract, state no_eng, the path reason, and the player is told to move the folder",
-                  exe is None and state == "no_eng" and why == "path" and "unusual characters" in m.tesseract_note())
+                  exe is None and state == "no_eng" and why == "path" and "特殊字符" in m.tesseract_note())
         check("...the real call is back afterwards", kernel.GetShortPathNameW is not None and not hasattr(kernel.GetShortPathNameW, "__code__"))
     finally:
         m.PLATFORM.tesseract_candidates, m.PLATFORM.tessdata_candidates = saved_cands, saved_data

@@ -13,6 +13,7 @@ from pathlib import Path
 os.environ["MAPLE_EXP_DATA"] = tempfile.mkdtemp()           # never touch your real data
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import maple_exp as m  # noqa: E402
+m.SEND_TO_STATS_SITE = True      # 中文版默认关闭发送；这些测试用本地假服务器验证发送逻辑
 assert Path(os.environ["MAPLE_EXP_DATA"]) == m.DATA_DIR, "tests must run on their own temp data folder, never on real data"
 
 failures = 0
@@ -117,10 +118,10 @@ check("two copies of the app can't erase each other's lines",
 e = {"date": "2026-10-11", "map": "The Land of Wild Boar II", "level": 29, "party": 4,
      "exp": 51862, "seconds": 3600, "mesos": 32713, "mesos_seconds": 3600}
 check("full line format", m.format_entry(e) ==
-      "Oct 11th, 2026 - The Land of Wild Boar II - Lv 29 - 4ppl party - 51,862exp/hr - 32,713mesos/hr - 1 h 00 min")
-check("table row format", m.log_row(e)[1:] == ("The Land of Wild Boar II", 29, "", "4ppl", "1h 00m", "51,862", "32,713", "", ""))
+      "2026年10月11日 - The Land of Wild Boar II - Lv 29 - 4人队伍 - 51,862exp/hr - 32,713mesos/hr - 1小时00分钟")
+check("table row format", m.log_row(e)[1:] == ("The Land of Wild Boar II", 29, "", "4人", "1时00分", "51,862", "32,713", "", ""))
 check("the class is in the line", m.format_entry({**e, "class": "Bandit"}).startswith(
-    "Oct 11th, 2026 - The Land of Wild Boar II - Lv 29 - Bandit - 4ppl party"))
+    "2026年10月11日 - The Land of Wild Boar II - Lv 29 - Bandit - 4人队伍"))
 
 # ---- party sizes of one map share a row in the log
 five = {**e, "party": 5, "exp": 50000, "seconds": 1800, "mesos": 10000, "mesos_seconds": 1800}
@@ -134,10 +135,10 @@ check(f"a map's party sizes share a row, smallest first; solo, other levels and 
       shape == [[4, 5], [1], [3], [3], ["-"]])
 row = m.group_row(groups[0][1])
 check(f"the shared row is over all their time ({row[5:]})",
-      row[4:] == ("4–5ppl ▸", "1h 30m", f"{(51862 + 50000) / 5400 * 3600:,.0f}", f"{(32713 + 10000) / 5400 * 3600:,.0f}", "", ""))
-check("open, its arrow points down", m.group_row(groups[0][1], True)[4] == "4–5ppl ▾")
+      row[4:] == ("4–5人 ▸", "1时30分", f"{(51862 + 50000) / 5400 * 3600:,.0f}", f"{(32713 + 10000) / 5400 * 3600:,.0f}", "", ""))
+check("open, its arrow points down", m.group_row(groups[0][1], True)[4] == "4–5人 ▾")
 check("a party size under it shows just its own numbers",
-      m.log_row(five, part=True) == ("", "", "", "", "5ppl", "30m", "100,000", "20,000", "", ""))
+      m.log_row(five, part=True) == ("", "", "", "", "5人", "30分", "100,000", "20,000", "", ""))
 check("the lines themselves aren't changed", five["exp"] == 50000 and e["seconds"] == 3600)
 
 # ---- class, seals and 15-minute runs
@@ -349,8 +350,8 @@ check("an update answer with a normal version is taken", answers["v0.9.99"] and 
 check("...a version name of 200,000 characters, a 30-digit number, non-ASCII digits or four parts is refused (it would stretch the window)",
       all(answers[k] == "refused" for k in ("v1.0.0-aaaaa", "v99999999999", "v1.0.0-٣٤", "v1.2.3.4")))
 check("...a real pre-release name is still taken", answers["v1.0.0-beta."] and answers["v1.0.0-beta."][0] == "1.0.0-beta.2")
-check("how long each line was measured over", [m.fmt_logged(s) for s in (300.4, 1500, 3900)] == ["5 min", "25 min", "1 h 05 min"]
-      and [m.fmt_logged(s, short=True) for s in (300.4, 1500, 3900)] == ["5m", "25m", "1h 05m"])
+check("how long each line was measured over", [m.fmt_logged(s) for s in (300.4, 1500, 3900)] == ["5分钟", "25分钟", "1小时05分钟"]
+      and [m.fmt_logged(s, short=True) for s in (300.4, 1500, 3900)] == ["5分", "25分", "1时05分"])
 
 log, _ = new_log()
 log.entries = [{"date": "2026-10-08", "map": "Kerning City", "level": 27, "exp": 1, "seconds": 1},
@@ -844,7 +845,7 @@ check("...and counting goes on afterwards", t.gained == 300)
 
 t, when = at_window("shop", 600, (153000,))
 note = t.ignored_note(when + 5)
-check(f"a note says why a jump was ignored ({note!r})", note and "3,000" in note and "shop" in note.lower())
+check(f"a note says why a jump was ignored ({note!r})", note and "3,000" in note and "商店" in note)
 check("...and it goes away after a while", t.ignored_note(when + 500) is None)
 
 # ---- a pause makes the count stale: whatever changed meanwhile (a sale in town, a trade) can't
@@ -876,7 +877,7 @@ t.pause()
 check("no note while the baseline is stale but paused", t.stale_note(10, False) is None)
 check("no note at first after resuming", t.stale_note(20, True) is None)
 check("a note asks for the inventory once it has been stale a while",
-      "inventory" in (t.stale_note(30, True) or "").lower())
+      "背包" in (t.stale_note(30, True) or ""))
 looks(t, 100000, 31, 2)
 check("...and goes away once it is read", t.stale_note(32, True) is None)
 
@@ -902,7 +903,7 @@ t = m.MesoTracker()
 looks(t, 100000, 0)
 t.pause(stale=True, bank_inventory=True)
 check("pausing with the inventory closed asks to open it now",
-      "save your mesos" in (t.stale_note(60, False) or ""))
+      "记录你的金币" in (t.stale_note(60, False) or ""))
 paused_reads(t, 130000, 61)
 check(f"the inventory read right after pausing banks what was earned ({t.gained})", t.gained == 30000 and t.value == 130000)
 check("...and the hint goes away", t.stale_note(70, False) is None)
@@ -1155,7 +1156,7 @@ check("...and with no level read at all it waits too", "wrapped" in tr.observe_p
 tr.observe_percent(0.3, 31, "badge")
 res = tr.observe_percent(0.3, 31, "badge")
 check(f"the next level read twice makes a level-up (gained {tr.gained}, levels {tr.levels}, EXP {tr.exp}, {res})",
-      res == (True, "LEVEL UP!") and tr.levels == 1 and tr.gained == 201 + 325 and tr.exp == 325
+      res == (True, "升级！") and tr.levels == 1 and tr.gained == 201 + 325 and tr.exp == 325
       and tr.req == 108480)
 tr.observe_percent(0.8, 31, "badge")
 check(f"...and counting carries on in the new level (gained {tr.gained})", tr.gained == 201 + 325 + 868 - 325)
@@ -1240,7 +1241,7 @@ tr.observe_percent(0.3, 31, "badge")
 tr.observe_percent(0.3, None, None)
 res = tr.observe_percent(0.3, 31, "badge")
 check(f"a badge that drops out for a look in between still confirms a level-up ({res}, levels {tr.levels})",
-      res == (True, "LEVEL UP!") and tr.levels == 1)
+      res == (True, "升级！") and tr.levels == 1)
 tr = pct_tracker(30, 99.79)
 tr.observe_percent(0.3, 31, "badge")
 tr.observe_percent(0.3, 30, "badge")

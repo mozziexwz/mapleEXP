@@ -13,6 +13,7 @@ DATA = Path(tempfile.mkdtemp())
 os.environ["MAPLE_EXP_DATA"] = str(DATA)                    # never touch your real data
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import maple_exp as m  # noqa: E402
+m.SEND_TO_STATS_SITE = True      # 中文版默认关闭发送；测试仍验证发送逻辑
 assert Path(os.environ["MAPLE_EXP_DATA"]) == m.DATA_DIR, "tests must run on their own temp data folder, never on real data"
 from screens import keep_windows_there, second_screen, stray_windows  # noqa: E402
 SCREEN = second_screen()                    # every window these tests open goes on the second screen, not the main one
@@ -92,7 +93,7 @@ check("with no line selected, the note box can't be typed in", str(box.cget("sta
 # a solo line
 select(solo)
 check("selecting a line opens its note", str(box.cget("state")) == "normal" and "Ant Tunnel I" in app.note_title.cget("text")
-      and "only" in app.note_title.cget("text").lower())
+      and "仅" in app.note_title.cget("text"))
 type_note("Good drops, bring pots!")
 check("what's typed isn't saved at once (it waits for a pause)", on_disk()[("Ant Tunnel I", 1)] is None)
 pump(1.3)
@@ -157,7 +158,7 @@ check("a note longer than the limit is cut to it", len(box.get("1.0", "end-1c"))
 asked = []
 m.messagebox.askyesno = lambda title, text, **k: asked.append(text) or False
 app._delete([app.shown[row("Ant Tunnel One")]])
-check("deleting a line that has a note says its note goes too", asked and "note on it will be deleted too" in asked[0])
+check("deleting a line that has a note says its note goes too", asked and "备注也会一并删除" in asked[0])
 
 # closing the overlay (or hiding the log) saves a note still being typed
 select(row("Ant Tunnel One"))
@@ -214,7 +215,7 @@ check("the window draws at every size (80% to 200%) and in every state: idle, tr
 check(f"a bigger size makes the window wider, not clipped ({widths})",
       all(widths[a] < widths[b] for a, b in zip(m.UI_SCALES, m.UI_SCALES[1:])))
 app.view.show(rate="123,456,789", state="alert", state_text="Can't read the EXP bar",
-              message="A very long message " * 12, tiles={"Last 5 min": "99,999,999", "Mesos / hr": "-", "Elapsed": "123:59:59"})
+              message="A very long message " * 12, tiles={"近5分钟": "99,999,999", "金币 / 小时": "-", "已用时间": "123:59:59"})
 root.update()
 check("long messages and big numbers still fit the window", app.view.winfo_reqwidth() <= app.theme.px(400) + 4)
 app.set_compact(False)
@@ -273,7 +274,7 @@ check("Wide copes with no tiles at all", wide._vals and wide.canvas.itemcget(wid
 app._update_display()
 root.update()
 check("Wide shows last 5 min, mesos/hr and time to the next level",shown[0] == "71,900" and shown[1] and shown[2] not in ("", "\u2014"))
-check("...with the level to reach in its heading", wide.canvas.itemcget(wide._caps[3], "text") == "TO LV 36")
+check("...with the level to reach in its heading", wide.canvas.itemcget(wide._caps[3], "text") == "距 Lv36")
 check("Wide has no big hero or tiles on screen", not app.view.hero.winfo_ismapped() and not app.view.tiles_row.winfo_ismapped())
 app.set_shape("bar")
 app._update_display()
@@ -291,20 +292,20 @@ app._update_display()
 root.update()
 cv, hero = bar.canvas, app.view.hero
 check(f"Bar shows net mesos/hr after mesos/hr, clear of the level text ({cv.itemcget(bar._net, 'text')})",
-      cv.itemcget(bar._net, "text") == f"net {net}" and cv.bbox(bar._net)[0] >= cv.bbox(bar._munit)[2]
+      cv.itemcget(bar._net, "text") == f"净 {net}" and cv.bbox(bar._net)[0] >= cv.bbox(bar._munit)[2]
       and cv.bbox(bar._net)[2] < cv.bbox(bar._eta)[0])
 app.set_shape("wide")
 app._update_display()
 root.update()
 wc = wide.canvas
-check("Wide shows it under the mesos/hr value", wc.itemcget(wide._net, "text") == f"net {net}"
+check("Wide shows it under the mesos/hr value", wc.itemcget(wide._net, "text") == f"净 {net}"
       and wc.bbox(wide._net)[1] >= wc.bbox(wide._vals[1])[3] - app.theme.px(4)
       and wc.bbox(wide._net)[3] <= app.theme.px(wide.top + wide.card_h))
 app.set_shape("square")
 app._update_display()
 root.update()
 check("Square shows it on the mesos/hr line", hero.itemcget(hero._nval, "state") == "normal"
-      and hero.itemcget(hero._nval, "text").endswith(f"net {net}") and hero.bbox(hero._nval)[0] >= hero.bbox(hero._munit)[2])
+      and hero.itemcget(hero._nval, "text").endswith(f"净 {net}") and hero.bbox(hero._nval)[0] >= hero.bbox(hero._munit)[2])
 app.cfg["potions_on"] = False
 app._update_display()
 app.set_shape("wide")
@@ -330,10 +331,10 @@ app.cfg["potions_on"] = True
 app.session.potions.used = {"Red Potion": 20}
 app._update_display()
 root.update()
-tile = app.view.tiles["Net / hr"]
+tile = app.view.tiles["净值 / 小时"]
 check(f"Full mode has a Net / hr tile with the net ({tile.itemcget(tile._v, 'text')})", tile.itemcget(tile._v, "text") == app._net(5620.0)[0])
 check("...four tiles side by side, none cut off and none beyond the window",
-      list(app.view.tiles) == ["Last 5 min", "Mesos / hr", "Net / hr", "Elapsed"]
+      list(app.view.tiles) == ["近5分钟", "金币 / 小时", "净值 / 小时", "已用时间"]
       and all(t.winfo_x() + t.winfo_width() <= app.view.tiles_row.winfo_width() + 2 for t in app.view.tiles.values())
       and abs(app.view.winfo_reqwidth() - app.theme.px(ui_main.W)) <= 4)
 app.cfg["potions_on"] = False
@@ -354,10 +355,10 @@ check("...but shows it when something needs attention", bar.message.winfo_ismapp
 app._state = lambda: ("tracking", "Tracking")
 app.status.set("Tracking.")
 app._update_display()
-app._set_start("Pause")
+app._set_start("暂停")
 check("Start/Pause on the sideways shapes follows the real button", bar.start_btn.icon == "pause" and wide.start_btn.icon == "pause"
-      and wide.start_btn.text == "Pause")
-app._set_start("Resume")
+      and wide.start_btn.text == "暂停")
+app._set_start("继续")
 check("...and the shape made later starts in the right state", app.view.strips["bar"].start_btn.icon == "play")
 bar.compact_btn.command()
 root.update()
@@ -366,7 +367,7 @@ check("the compact icon on a sideways shape goes back to full", not app.compact 
 check("full mode is as wide as ever whichever shape is chosen", abs(app.view.winfo_reqwidth() - app.theme.px(ui_main.W)) <= 4)
 check("the shape is saved", json.loads((DATA / "config.json").read_text(encoding="utf-8"))["compact_shape"] == "bar")
 app.set_shape("square")
-app._set_start("Start")
+app._set_start("开始")
 
 # Settings has a What's new button that shows this version's notes again
 shown = []
@@ -419,13 +420,13 @@ def button(w, text):
     return [c for c in widgets(w) if isinstance(c, ui_main.Button) and c.text == text]
 
 
-check("the first page has a Next button, not Got it", button(win, "Next") and not button(win, "Got it")
-      and any("what you really make" in t for t in labels(win)))
-button(win, "Next")[0].command()
+check("the first page has a Next button, not Got it", button(win, "下一步") and not button(win, "知道了")
+      and any("你真正的收入" in t for t in labels(win)))
+button(win, "下一步")[0].command()
 root.update()
 pictures = len([c for c in widgets(win) if c.winfo_class() == "Label" and c.cget("image")])
 check(f"Next shows the potion page with a Got it button, and both pictures on a screen with room ({pictures})",
-      "How potion cost works" in labels(win) and button(win, "Got it") and not button(win, "Next")
+      "药水花费如何计算" in labels(win) and button(win, "知道了") and not button(win, "下一步")
       and (pictures == 2 or win.winfo_screenheight() < 1000))
 check("...and the window fits on the screen", win.winfo_reqheight() <= win.winfo_screenheight() - 60)
 win.destroy()
@@ -465,7 +466,7 @@ app.healthlog.snapshot("0.9.14-beta", "Windows 10", [], "screen", "ok")
 app.healthlog.look("read", ms=10.0, game=(1920, 1080, False, 11.0))
 app.healthlog.clock = real_clock
 app._ask_to_share()
-check("the health question is asked once, with its own title", asked == ["Help make the overlay more reliable?"]
+check("the health question is asked once, with its own title", asked == ["帮助提升悬浮窗的可靠性？"]
       and app.cfg["share_health"] is False)
 app._ask_to_share()
 check("...and not again", len(asked) == 1)
@@ -479,7 +480,7 @@ asked.clear()
 app._ask_to_share()
 app._ask_to_share()
 check("a new install is asked about sharing runs, then about health reports, and neither twice",
-      asked == ["Help other players pick maps?", "Help make the overlay more reliable?"]
+      asked == ["帮助其他玩家选择地图？", "帮助提升悬浮窗的可靠性？"]
       and app.cfg["share_runs"] is False and app.cfg["share_health"] is False and not posted)
 app.cfg.pop("share_health")
 answer[0] = True
@@ -527,7 +528,7 @@ app.view_capture()
 root.update()
 win = next(w for w in set(root.winfo_children()) - before)
 texts = " | ".join(w.cget("text") for w in win.winfo_children() if w.winfo_class() == "Label" and w.cget("text"))
-check("View capture says why the class wasn't read", "Class. Not read: the tries didn't agree" in texts)
+check("View capture says why the class wasn't read", "职业：未读取：the tries didn't agree" in texts)
 win.destroy()
 app.reader.job_look = {"image": None, "boxes": [], "why": "this window is covering the class name: move it"}
 app.view_capture(); root.update()
@@ -753,15 +754,15 @@ if app.hotkeys.supported:
     keys_before = dict(app.cfg["hotkeys"])
     texts = lambda: {a: b.itemcget(b._txt, "text") for a, b in ui["buttons"].items()}
     ui["choose"](names[0])
-    check("clicking a hotkey makes it wait for keys", ui["choosing"]["action"] == names[0] and texts()[names[0]] == "Press keys...")
+    check("clicking a hotkey makes it wait for keys", ui["choosing"]["action"] == names[0] and texts()[names[0]] == "请按键……")
     ui["choose"](names[1])
     t2 = texts()
     check("clicking another one moves the wait to it: only one says Press keys",
-          ui["choosing"]["action"] == names[1] and sum(v == "Press keys..." for v in t2.values()) == 1
-          and t2[names[0]] == (keys_before[names[0]] or "Off"))
+          ui["choosing"]["action"] == names[1] and sum(v == "请按键……" for v in t2.values()) == 1
+          and t2[names[0]] == (keys_before[names[0]] or "关闭"))
     ui["choose"](names[1])
     check("clicking the waiting one again cancels it, and every key is as it was",
-          ui["choosing"]["action"] is None and texts() == {a: (keys_before[a] or "Off") for a in names}
+          ui["choosing"]["action"] is None and texts() == {a: (keys_before[a] or "关闭") for a in names}
           and app.cfg["hotkeys"] == keys_before)
     check("hotkeys work again after cancelling", getattr(app.hotkeys, "_paused", True) is False)
     ui["choose"](names[2])
@@ -796,12 +797,12 @@ from types import SimpleNamespace as NS                # (the pill's words, with
 pill_for = lambda: m.App._state(NS(reader=NS(mode="window", hwnd=1), rejected=0, level_up_at=None, level=35, cfg=app.cfg,
                                    tracker=NS(req=1, running=True, elapsed=lambda: 5.0), session=NS(waiting=None)))
 state = pill_for()
-check(f"...the pill says so ({state[1]!r})", state[1].endswith("No Reset"))
+check(f"...the pill says so ({state[1]!r})", state[1].endswith("不重置"))
 check("...and the status line explains it (runs stay on this PC)", app._status_for("") == m.NO_RESET_ON)
 app._hotkey("no_reset")
 root.update()
 check("the No Reset hotkey turns it off again, switch included", app.cfg["no_reset"] is False and not app.session.no_reset
-      and not app.autolog.no_reset and app.view.no_reset.on is False and pill_for()[1] == "Tracking · Lv 35")
+      and not app.autolog.no_reset and app.view.no_reset.on is False and pill_for()[1] == "追踪中 · Lv 35")
 app.open_settings()
 app.settings_win.update()
 app._no_reset_var.set(True)
@@ -820,7 +821,7 @@ app.set_compact(True)
 app._update_display()
 root.update()
 bar = app.view.strips["bar"]
-check("the Bar shape (no pill) shows a small No Reset word", bar.canvas.itemcget(bar._nr, "text") == "No Reset")
+check("the Bar shape (no pill) shows a small No Reset word", bar.canvas.itemcget(bar._nr, "text") == "不重置")
 app.set_no_reset(False)
 app._update_display()
 root.update()
@@ -920,7 +921,7 @@ if app.view.details_open:
 app.cfg["ui_scale"] = 100
 app._apply_ui_scale()
 check(f"nothing sticks out of the main window at any size, shape or mode ({box_bad[:3]})", not box_bad)
-shown = app.view.details.itemcget(app.view.details._vals["Potion cost"], "text")
+shown = app.view.details.itemcget(app.view.details._vals["药水花费"], "text")
 check("a long potion hint is cut with an ellipsis instead of running into its label", shown.endswith("…") or len(shown) < 20)
 app.session.potions.reset()
 app.cfg["potions_on"] = False
@@ -945,11 +946,11 @@ check("bar in sight, nothing used: plain 0", app._potion_cost_text(0.0) == "0")
 app.session.potions.used = {"Red Potion": 20}
 check("bar in sight, priced items: just the cost", app._potion_cost_text(1.0) == "1,000")
 app.session.potions.used = {"Mana Elixir": 3}
-check("an item used with no price says so instead of 0", app._potion_cost_text(1.0) == "No price for: Mana Elixir")
+check("an item used with no price says so instead of 0", app._potion_cost_text(1.0) == "没有价格：Mana Elixir")
 app.session.potions.used = {"Red Potion": 20, "Mana Elixir": 3}
-check("...and keeps the cost next to the hint", app._potion_cost_text(1.0) == "1,000  ·  No price for: Mana Elixir")
+check("...and keeps the cost next to the hint", app._potion_cost_text(1.0) == "1,000  ·  没有价格：Mana Elixir")
 app.session.potions.used = {"Mana Elixir": 1, "Power Elixir": 1, "Cider": 1}
-check("...three or more are counted", app._potion_cost_text(1.0) == "No price for: Mana Elixir, Power Elixir +1")
+check("...three or more are counted", app._potion_cost_text(1.0) == "没有价格：Mana Elixir, Power Elixir +1")
 app.cfg["potion_prices"] = {"Mana Elixir": 700, "Power Elixir": 900, "Cider": 5}
 check("a price the player set removes the hint", app._potion_cost_text(1.0) == "1,605")
 app.cfg["potion_prices"] = {}
@@ -957,9 +958,9 @@ app.session.potions.used = {}
 app.potion_bar = m.potion_bar.NOT_SEEN
 app._potion_unseen = None
 check("bar just out of sight: still plain 0", app._potion_cost_text(100.0) == "0")
-check("bar unseen for a while: says so", app._potion_cost_text(100.0 + m.POTION_UNSEEN_AFTER) == "Potion bar not seen")
+check("bar unseen for a while: says so", app._potion_cost_text(100.0 + m.POTION_UNSEEN_AFTER) == "未看到药水栏")
 app.session.potions.used = {"Red Potion": 2}
-check("...with the cost so far beside it", app._potion_cost_text(200.0) == "100  ·  Potion bar not seen")
+check("...with the cost so far beside it", app._potion_cost_text(200.0) == "100  ·  未看到药水栏")
 app.potion_bar = m.potion_bar.PotionLook(True, "keyboard", "default", 1.0, ())
 check("the bar back in sight clears it", app._potion_cost_text(201.0) == "100" and app._potion_unseen is None)
 app.potion_bar = m.potion_bar.NOT_SEEN
@@ -971,7 +972,7 @@ app.tracker.running, app.potion_bar, app._potion_unseen = real_running, real_bar
 # ---- towns aren't logged; a minimap that can't be seen pauses
 blank = m.Reading(*([None] * len(m.Reading._fields)))
 app._handle(blank._replace(where="Reading", map="Perion"))
-check("on a town map the status says nothing is logged", app.in_town and "In a town" in app.status.get())
+check("on a town map the status says nothing is logged", app.in_town and "在城镇中" in app.status.get())
 entries = len(app.autolog.entries)
 app._log_tick(m.time.monotonic())
 check("...and nothing is logged there", len(app.autolog.entries) == entries)
@@ -1015,11 +1016,11 @@ app.reader.level_failures, app.reader.name_print = 0, None
 for _ in range(2):
     app._handle(pct)
 check("a %-only bar with no level yet says it is reading the level",
-      app.level_wait and "Reading your level" in app.status.get() and not app._can_type_level())
+      app.level_wait and "正在从徽章读取你的等级" in app.status.get() and not app._can_type_level())
 app.reader.level_failures = m.LEVEL_FAILS_FOR_FALLBACK
 app._handle(pct)
 check("...typing the level in is offered once reading keeps failing, and the status says where",
-      app._can_type_level() and "Level fallback" in app.status.get())
+      app._can_type_level() and "等级备用值" in app.status.get())
 real_ask = m.simpledialog.askinteger
 m.simpledialog.askinteger = lambda *a, **k: 31
 app.type_level()
@@ -1028,7 +1029,7 @@ check("a typed level is used for the estimate", app.tracker.req == 108480 and ap
 app.session.start(m.time.monotonic())
 app._handle(pct)
 check("while tracking, the status and the numbers say they are estimates",
-      "Estimated from the %" in app.status.get() and app.tracker.estimated and app.level == 31)
+      "由 % 估算得出" in app.status.get() and app.tracker.estimated and app.level == 31)
 
 with_level = pct._replace(level=(30, "badge"))
 app.reset()
@@ -1044,7 +1045,7 @@ check("one different name print isn't another character", app.tracker.req == 957
 app.reader.name_print = print_of("Pip2")
 app._handle(with_level)
 check("two in a row are: it starts over and says so, and the old level isn't kept",
-      app.tracker.req is None and "another character" in app.status.get() and app.reader.level is None)
+      app.tracker.req is None and "另一个角色" in app.status.get() and app.reader.level is None)
 # ---- found by the audit
 app.reset()
 app.pct_note = "level changed: Reset to start again on the new level"
@@ -1078,7 +1079,7 @@ for scale in m.UI_SCALES:
     limit = app.theme.gfx.px(ui_main.INNER - 14)
     shown = [app.view.hero.bbox(i) for i in app.view.hero._digits if app.view.hero.itemcget(i, "state") == "normal"]
     hero_right = max((box[2] for box in shown if box), default=0)
-    tile = app.view.tiles["Last 5 min"]
+    tile = app.view.tiles["近5分钟"]
     x0, y0, x1, y1 = tile.bbox(tile._v)
     if x1 > tile.winfo_width() + 1:
         fit_ok = False
@@ -1108,16 +1109,16 @@ def carry(before, after):
 check("the level carries over when the name print is the same", carry(print_of("Fox"), print_of("Fox")) == 95700)
 check("...but not when no print could be taken (the character can't be told)", carry(None, None) is None)
 check("...nor when only one was taken", carry(print_of("Fox"), None) is None and carry(None, print_of("Fox")) is None)
-check("...and the status says it is waiting for the badge", app.level_wait and "Reading your level" in app.status.get())
+check("...and the status says it is waiting for the badge", app.level_wait and "正在从徽章读取你的等级" in app.status.get())
 carry(print_of("Fox"), print_of("Fox"))
 app.session.start(m.time.monotonic())
 app._handle(pct)
-check("a carried-over level is said to be known from before", "known from before" in app.status.get())
+check("a carried-over level is said to be known from before", "沿用之前的数值" in app.status.get())
 app.reset()
 app.reader.mode, app.reader.level_failures = "region", m.LEVEL_FAILS_FOR_FALLBACK
 app._handle(pct)
 check("in a selected area the status says the badge can't be read there",
-      "Selected area" in app.status.get() and app._can_type_level())
+      "选定区域" in app.status.get() and app._can_type_level())
 app.reader.mode = "window"
 app.reader.name_print = None
 app.found_at, app.pct_note = None, ""
@@ -1151,7 +1152,7 @@ start_pct()
 for _ in range(12):
     app._handle(pct_at(51.5, 31))                       # the badge says another level and nothing wrapped
 check(f"A13-2: 'level changed' isn't a misread either, and the status says to press Reset ({app.rejected})",
-      app.rejected == 0 and "Press Reset" in app.status.get())
+      app.rejected == 0 and "重置" in app.status.get())
 app.reset()
 for _ in range(12):
     app._handle(pct_at(50.0, 150))
@@ -1177,7 +1178,7 @@ app.reader._blocked = real_blocked
 app._handle(pct._replace(level=None))
 check(f"A13-4: a covered badge ends in the Level fallback, and the status says the window is in the way "
       f"({app.reader.level_failures}, {app.status.get()!r})",
-      app._can_type_level() and "covering the level badge" in app.status.get())
+      app._can_type_level() and "遮住了等级徽章" in app.status.get())
 app.reader.level_failures = 0
 
 # ---- A13-5: a badge level doesn't outlive a place change or a reset; nor a forgotten level
@@ -1219,10 +1220,10 @@ app.reset()
 app.tracker.estimated, app.tracker._format = True, "exact"
 app.tracker.exp, app.tracker.pct, app.tracker.req = 40000, 41.8, 95700
 app._update_display()
-cur_exact = shown["details"]["Current"]
+cur_exact = shown["details"]["当前"]
 app.tracker._format = "percent"
 app._update_display()
-cur_pct = shown["details"]["Current"]
+cur_pct = shown["details"]["当前"]
 app.view.show = real_show
 app.reset()
 check(f"A13-10: 'Current' is only approximate while the bar shows only a % ({ascii(cur_exact)}, {ascii(cur_pct)})",
@@ -1241,12 +1242,12 @@ app._handle(pct_at(51.0))
 app.reader.name_print = None
 app._handle(pct_at(51.0))
 check(f"A13-7: nothing of the name showing says the name is covered, and keeps tracking ({app.status.get()!r})",
-      "covered" in app.status.get() and app.tracker.req == 95700)
+      "被遮住" in app.status.get() and app.tracker.req == 95700)
 for _ in range(3):
     app.reader.name_print = half("beanguri")
     app._handle(pct_at(51.0))
 check(f"...half of the same name showing keeps the session and the level, and says so ({app.status.get()!r})",
-      app.tracker.req == 95700 and "hidden" in app.status.get() and app.other_char_at is None)
+      app.tracker.req == 95700 and "被遮住" in app.status.get() and app.other_char_at is None)
 for _ in range(3):
     app.reader.name_print = half("soymiso")
     app._handle(pct_at(51.0))
@@ -1261,7 +1262,7 @@ for _ in range(3):
     app.reader.name_print = mostly
     app._handle(pct_at(51.0))
 check(f"...most of the name covered (too little to tell) keeps the session and says it's covered ({app.status.get()!r})",
-      app.tracker.req == 95700 and "covered" in app.status.get() and app.other_char_at is None)
+      app.tracker.req == 95700 and "被遮住" in app.status.get() and app.other_char_at is None)
 app.reset()
 
 # ---- Report a bug > Send to the developer
@@ -1273,8 +1274,8 @@ before = set(app.root.winfo_children())
 choice = app.report_bug()
 root.update()
 check("Report a bug offers both ways: Send to the developer and Report on GitHub",
-      button(choice, "Send to the developer") and button(choice, "Report on GitHub") and button(choice, "Cancel"))
-button(choice, "Cancel")[0].command()
+      button(choice, "发送给开发者") and button(choice, "在 GitHub 上报告") and button(choice, "取消"))
+button(choice, "取消")[0].command()
 root.update()
 check("Cancel closes the choice", not choice.winfo_exists())
 
@@ -1289,26 +1290,26 @@ try:
     root.update()
     dlg = new_windows(before)[0]
     check("Send to the developer opens the dialog with the text box, the note and Send / Cancel",
-          button(dlg, "Send") and button(dlg, "Cancel") and any("No pictures are sent" in t for t in labels(dlg))
-          and any("What went wrong?" in t for t in labels(dlg)))
+          button(dlg, "发送") and button(dlg, "取消") and any("不会发送图片" in t for t in labels(dlg))
+          and any("出了什么问题？" in t for t in labels(dlg)))
     check("the 'What will be sent' fold-out starts closed", not dlg.fold.winfo_ismapped())
-    button(dlg, "What will be sent  " + chr(0x25b8))[0].command()
+    button(dlg, "将发送的内容  " + chr(0x25b8))[0].command()
     root.update()
     shown_text = dlg.sent_text.get("1.0", "end-1c")
     check("opening the fold-out shows the exact text that will be sent", dlg.fold.winfo_ismapped() and shown_text == dlg.details
           and "EXP bar: found" in shown_text)
 
-    button(dlg, "Send")[0].command()
+    button(dlg, "发送")[0].command()
     root.update()
-    check("Send with an empty box is refused and nothing is posted", not posted and "write a sentence" in dlg.status.cget("text"))
+    check("Send with an empty box is refused and nothing is posted", not posted and "请用一句话描述" in dlg.status.cget("text"))
     dlg.message.insert("1.0", "see www.spam.org")
-    button(dlg, "Send")[0].command()
+    button(dlg, "发送")[0].command()
     root.update()
-    check("a link in the text is refused", not posted and "leave out links" in dlg.status.cget("text"))
+    check("a link in the text is refused", not posted and "请不要包含链接" in dlg.status.cget("text"))
     dlg.message.delete("1.0", "end")
     dlg.message.insert("1.0", "x" * 2001)
     dlg.typed()
-    button(dlg, "Send")[0].command()
+    button(dlg, "发送")[0].command()
     root.update()
     check("more than 2,000 characters is refused, and the counter shows it",
           not posted and "2,001 / 2,000" in dlg.counter.cget("text"))
@@ -1316,8 +1317,8 @@ try:
     dlg.message.insert("1.0", "It stopped reading after I changed maps.")
     dlg.typed()
     check("the live counter counts what is typed", "40 / 2,000" in dlg.counter.cget("text"))
-    check("with sharing blocked (testing) it won't send", (button(dlg, "Send")[0].command(), root.update(), not posted)[2]
-          and "off while testing" in dlg.status.cget("text"))
+    check("with sharing blocked (testing) it won't send", (button(dlg, "发送")[0].command(), root.update(), not posted)[2]
+          and "测试期间已关闭发送" in dlg.status.cget("text"))
 
     def wait_until(done, seconds=5):
         """Keeps the window going until done() (the app's own queue handler answers the send), at most `seconds`."""
@@ -1327,13 +1328,13 @@ try:
             time.sleep(0.05)
 
     os.environ["MAPLE_EXP_ALLOW_SHARE"] = "1"
-    button(dlg, "Send")[0].command()
-    wait_until(lambda: "Sent, thank you" in dlg.status.cget("text"))
+    button(dlg, "发送")[0].command()
+    wait_until(lambda: "已发送，谢谢" in dlg.status.cget("text"))
     check("Send posts the four fields, with the health ID and the scrubbed text",
           len(posted) == 1 and set(posted[0]) == {"id", "version", "message", "details"}
           and posted[0]["details"] == dlg.details and posted[0]["message"] == "It stopped reading after I changed maps."
           and posted[0]["version"] == m.VERSION and m.healthlog.good_id(posted[0]["id"]) and posted[0]["id"] == app.cfg["health_id"])
-    check("...then says thank you and counts it", "Sent, thank you" in dlg.status.cget("text") and m.reports_sent_today(app.cfg) == 1)
+    check("...then says thank you and counts it", "已发送，谢谢" in dlg.status.cget("text") and m.reports_sent_today(app.cfg) == 1)
     dlg.destroy()
 
     # A05: the site counts UTF-16 units (an emoji is 2), and the window keeps answering while a send is slow
@@ -1351,16 +1352,16 @@ try:
     slow_count = len(posted)
     m.post_report = lambda body, timeout=15: (time.sleep(1.5), "ok")[1]
     t0 = time.monotonic()
-    button(d_slow, "Send")[0].command()
+    button(d_slow, "发送")[0].command()
     stamps = [time.monotonic()]
-    while "Sent, thank you" not in d_slow.status.cget("text") and time.monotonic() - t0 < 15:
+    while "已发送，谢谢" not in d_slow.status.cget("text") and time.monotonic() - t0 < 15:
         root.update()
         stamps.append(time.monotonic())
         time.sleep(0.02)
     gap = max(b - a for a, b in zip(stamps, stamps[1:])) if len(stamps) > 1 else 99
     # (a frozen window would sit the whole 1.5 s send in one update; a slow test machine only makes updates fewer)
     check(f"while a slow send is waiting the window keeps answering (no freeze; longest pause {gap:.2f} s), then says thank you",
-          gap < 1.0 and stamps[-1] - t0 >= 1.4 and "Sent, thank you" in d_slow.status.cget("text") and len(posted) == slow_count)
+          gap < 1.0 and stamps[-1] - t0 >= 1.4 and "已发送，谢谢" in d_slow.status.cget("text") and len(posted) == slow_count)
     m.post_report = lambda body, timeout=15: (posted.append(body), "ok")[1]
     d_slow.destroy()
     app.cfg.pop("reports_sent", None)
@@ -1372,14 +1373,14 @@ try:
         root.update()
         d2 = new_windows(before)[0]
         d2.message.insert("1.0", "again")
-        button(d2, "Send")[0].command()
+        button(d2, "发送")[0].command()
         root.update()
         if n == 2:
-            wait_until(lambda: "Sent, thank you" in d2.status.cget("text"))
+            wait_until(lambda: "已发送，谢谢" in d2.status.cget("text"))
             check("a 3rd report on the day is still allowed", len(posted) == 2)
         else:
             check("a 4th report on the day is refused locally, in plain words",
-                  len(posted) == 2 and "sent 3 reports today" in d2.status.cget("text"))
+                  len(posted) == 2 and "已发送 3 份报告" in d2.status.cget("text"))
         d2.destroy()
 
     # B03: the number the site gave is shown with the two ways to reach the developer; without it, no number
@@ -1395,9 +1396,9 @@ try:
         root.update()
         text = d5.status.cget("text")
         check(f"a sent report {'#17 shows its number and Want a reply?' if expect else 'without a number shows none'}",
-              ("report #17" in text and "Want a reply" in text) == expect and "Sent, thank you" in text)
+              ("第 17 号报告" in text and "想要回复吗" in text) == expect and "已发送，谢谢" in text)
         check(f"...{'with a GitHub issues and a Reddit button' if expect else 'and no extra buttons'}",
-              (button(d5, "GitHub issues") != [] and button(d5, "Reddit") != []) == expect)
+              (button(d5, "GitHub Issues") != [] and button(d5, "Reddit") != []) == expect)
         if expect:
             opened = []
             real_open = m.webbrowser.open
@@ -1405,14 +1406,14 @@ try:
             try:
                 check("...nothing opens until a click", not opened)
                 button(d5, "Reddit")[0].command()
-                button(d5, "GitHub issues")[0].command()
+                button(d5, "GitHub Issues")[0].command()
             finally:
                 m.webbrowser.open = real_open
             check("...Reddit opens the owner's page, GitHub issues the repo's", opened == [m.REPORT_REDDIT, f"https://github.com/{m.GITHUB_REPO}/issues"])
         d5.destroy()
     app.cfg.pop("reports_sent", None)
 
-    for outcome, words in (("later", "connected to the internet"), ("message", "leave out links"), ("limit", "sent 3 reports")):
+    for outcome, words in (("later", "已连接互联网"), ("message", "请不要包含链接"), ("limit", "已发送 3 份报告")):
         app.cfg["reports_sent"] = {"day": "2000-01-01", "n": 0}
         before = set(app.root.winfo_children())
         app.send_report()
@@ -1428,7 +1429,7 @@ try:
     app.send_report()
     root.update()
     d4 = new_windows(before)[0]
-    button(d4, "Cancel")[0].command()
+    button(d4, "取消")[0].command()
     root.update()
     check("Cancel closes the dialog without sending", not d4.winfo_exists() and len(posted) == 2)
 finally:
