@@ -37,6 +37,9 @@ on:
   push:
     tags: ["v*", "mac-test-v*"]
 
+env:
+  PYTHONUTF8: "1"          # 测试和构建会输出中文，Windows 默认控制台编码打印不了
+
 permissions:
   contents: read
 
