@@ -26,6 +26,7 @@ os.environ["MAPLE_EXP_DATA"] = tempfile.mkdtemp()                   # never touc
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import healthlog  # noqa: E402
 import maple_exp as m  # noqa: E402
+m.SEND_TO_STATS_SITE = True      # 中文版默认关闭发送；这个测试对本地测试服务器验证发送逻辑
 
 # Sending is allowed only here, to this server, in this process (never from a shell with variables set).
 m.STATS_SITE = BASE
