@@ -1,0 +1,746 @@
+{
+  "meta": {
+    "language": "zh-CN",
+    "name": "简体中文",
+    "target": "Maple Classic Exp Overlay",
+    "base_version": "0.9.16-beta"
+  },
+  "exact": {
+    "\nIn a town: nothing is logged here.": "\n在城镇中：此处不记录日志。",
+    "\nThe minimap's name is back.": "\n小地图名称已恢复。",
+    "  (just logged)": "  （刚刚已记录）",
+    "  vs 5 min": "  对比5分钟",
+    "(Describe it here: what did you do, what did you expect, what did it show?)": "（请在此描述：你做了什么、期望发生什么、实际显示了什么？）",
+    "(If you can, add a screenshot of the game and the overlay.)": "（如果可以，请附上游戏和悬浮窗的截图。）",
+    "(No details were given for this version.)": "（此版本未提供详细说明。）",
+    "(nothing)": "（无）",
+    "**Files**": "**文件**",
+    "**What went wrong?**": "**出了什么问题？**",
+    ". Or Settings, Level fallback lets you type your level in.": "。或在「设置 > 等级备用值」中手动输入等级。",
+    "2–6ppl ▸": "2–6人 ▸",
+    "5 min": "5分钟",
+    "<details><summary>Details (filled in by the overlay)</summary>": "<details><summary>详情（由悬浮窗自动填写）</summary>",
+    "A Mac download, as a test": "Mac 版下载（测试版）",
+    "A bug report's picture of the whole game is deleted after 5 minutes.": "错误报告附带的整个游戏画面图片会在 5 分钟后删除。",
+    "A new reader, tested quietly": "新的读取器，静默测试中",
+    "A new switch under the numbers (and in Settings) for farming that moves between maps: changing maps no longer starts new numbers. Runs made with it on stay on your PC (they're not sent to the best-maps site).": "在数字下方（以及设置中）新增了一个开关，适用于在多个地图间切换的刷怪：换地图不再重新开始计数。开启时产生的记录只保存在本机（不会发送到最佳地图网站）。",
+    "A new way to read the EXP bar runs in the background and only notes whether it agrees. It changes nothing you see.": "一种新的经验条读取方式会在后台运行，只记录它与现有结果是否一致，不会改变你看到的任何内容。",
+    "A short anonymous summary of how well the overlay reads your game, so problems get fixed. Numbers only: no names, chat, maps or pictures.": "一份简短的匿名摘要，说明悬浮窗读取你游戏的效果，以便修复问题。仅包含数字：不含名字、聊天、地图或图片。",
+    "Alert": "提示",
+    "Always on top of other windows": "始终置顶于其他窗口之上",
+    "Back to full size": "返回完整尺寸",
+    "Bar": "长条",
+    "Best maps": "最佳地图",
+    "Boxes show where each digit was found.": "方框标出了每个数字被找到的位置。",
+    "Can't find the EXP bar at the bottom of the game. Is something covering it?": "在游戏底部找不到经验条。是不是被什么东西遮住了？",
+    "Can't find the EXP bar.": "找不到经验条。",
+    "Can't find the EXP bar. Is this window covering it?": "找不到经验条。是不是被本窗口遮住了？",
+    "Can't read the EXP bar": "无法读取经验条",
+    "Can't see the map name. Is the minimap open?": "看不到地图名。小地图是否已打开？",
+    "Cancel": "取消",
+    "Check for updates": "检查更新",
+    "Check for updates when it starts": "启动时检查更新",
+    "Choose a compact look": "选择精简模式外观",
+    "Class": "职业",
+    "Class. Not read yet (it's tried every few seconds once the EXP bar is found)": "职业：尚未读取（找到经验条后会每隔几秒尝试一次）",
+    "Clearer messages": "更清晰的提示",
+    "Click a line to write a note about it. Right-click to copy, rename or delete it.": "点击一行可为其添加备注；右键可复制、重命名或删除。",
+    "Click one, then press the keys you want. Backspace turns it off.": "点击一项，然后按下想要的按键。按退格键可关闭该快捷键。",
+    "Close": "关闭",
+    "Compact mode": "精简模式",
+    "Compact mode is the small version of the overlay (the compact icon, or Shift+4). Choose how it looks. You can change it any time in Settings.": "精简模式是悬浮窗的小尺寸版本（点击精简图标，或按 Shift+4）。请选择它的外观，之后可随时在设置中更改。",
+    "Compact mode now comes in three shapes: Square, Wide and Bar. Pick one in Settings, under Compact shape.": "精简模式现在有三种形状：方形、宽屏和长条。请在设置的“精简模式形状”中选择。",
+    "Compact shape": "精简模式形状",
+    "Copy line": "复制此行",
+    "Copy lines": "复制这些行",
+    "Couldn't check for updates. Are you connected to the internet?": "无法检查更新。是否已连接互联网？",
+    "Couldn't save the note (see errors.log).": "无法保存备注（详见 errors.log）。",
+    "Couldn't send it. Are you connected to the internet?": "发送失败。是否已连接互联网？",
+    "Count potions used and what they cost": "统计消耗的药水及其花费",
+    "Current": "当前",
+    "Data folder": "数据文件夹",
+    "Date": "日期",
+    "Default Ratio (Filter Applied)": "默认比例（已应用过滤器）",
+    "Delete entry": "删除记录",
+    "Delete this log entry?": "确定删除这条日志记录吗？",
+    "Details": "详情",
+    "Details  ▸": "详情  ▸",
+    "Details  ▾": "详情  ▾",
+    "Drag a box around the EXP numbers  (Esc to cancel)": "请拖出一个框，框住经验数字（按 Esc 取消）",
+    "EXP / HR": "经验 / 小时",
+    "EXP PER HOUR": "每小时经验",
+    "EXP and party size, read the new way": "经验和队伍人数：全新的读取方式",
+    "EXP bar without a number": "不显示数字的经验条",
+    "EXP log": "经验日志",
+    "EXP/hr": "经验/时",
+    "Elapsed": "已用时间",
+    "Estimates stay on your PC. They are never shared with the best-maps website.": "估算值只保存在本机，绝不会分享给最佳地图网站。",
+    "Fewer reading problems": "更少的读取问题",
+    "Follow the game": "跟随游戏",
+    "Following the MapleStory window...": "正在跟随 MapleStory 窗口……",
+    "For farming that moves between maps. Runs made with it on stay on this PC (they're not sent to the best-maps site).": "适用于在多个地图间切换的刷怪。开启时产生的记录只保存在本机（不会发送到最佳地图网站）。",
+    "Found the EXP bar, but can't read its numbers clearly.": "找到了经验条，但无法清楚读取数字。",
+    "Found the EXP bar, but can't read its percentage clearly.": "找到了经验条，但无法清楚读取百分比。",
+    "Found your EXP bar. Working out your level...": "已找到经验条，正在计算你的等级……",
+    "Found your EXP bar. Your level shows after your next EXP gain.": "已找到经验条，下次获得经验后会显示你的等级。",
+    "Gained": "已获得",
+    "Get the update": "获取更新",
+    "Got it": "知道了",
+    "Having trouble reading the EXP bar clearly. View capture shows what it sees.": "难以清楚读取经验条。点「查看截取」可看到它读到的内容。",
+    "Health reports (if you said yes)": "运行状况报告（如果你选了同意）",
+    "Health reports (your choice)": "运行状况报告（由你决定）",
+    "Help make the overlay more reliable?": "帮助提升悬浮窗的可靠性？",
+    "Help other players pick maps?": "帮助其他玩家选择地图？",
+    "High levels (a bar with only a %): leveling up, run counts, a covered level badge and Reset work properly now.": "高等级（只显示 % 的经验条）：升级、记录次数、被遮挡的等级徽章和重置现在都能正常工作。",
+    "Hotfix for high levels": "高等级热修复",
+    "Hotkeys": "快捷键",
+    "Hotkeys, while MapleStory or the overlay is in front": "快捷键（MapleStory 或悬浮窗在最前时有效）",
+    "How potion cost works": "药水花费如何计算",
+    "How would you like to report it?": "你想如何报告？",
+    "If the badge can't be read, it uses your level from before, or you can type it: Settings, Level fallback.": "如果读不出徽章，会使用你之前的等级；你也可以手动输入：设置 > 等级备用值。",
+    "If the bottom of the game window is off your screen, the overlay says so instead of \"can't find the EXP bar\".": "如果游戏窗口底部超出了屏幕，悬浮窗会直接说明，而不是提示“找不到经验条”。",
+    "If the minimap's name is covered, it tells you after a few seconds, keeps the log clean, and pauses if it stays hidden.": "如果小地图名称被遮住，几秒后会提醒你、保持日志整洁，并在持续被遮挡时暂停。",
+    "If the party list can't be seen for a moment, your party size is kept (the status line says so).": "如果队伍列表暂时看不到，会保留你的队伍人数（状态栏会提示）。",
+    "If the potion cost can't be worked out, it says why (\"Potion bar not seen\" or \"No price for: ...\") instead of showing 0.": "如果无法计算药水花费，会说明原因（“未看到药水栏”或“没有价格：……”），而不是显示 0。",
+    "It counts only while tracking is on and EXP is coming in. Paused or in town, nothing counts.": "只有在追踪开启且正在获得经验时才会统计。暂停或在城镇时不统计。",
+    "It only counts potions on your quick-slot bar (bottom right of the game). See how on the next page.": "只统计放在快捷栏（游戏右下角）上的药水。具体方法见下一页。",
+    "LAST 5 MIN": "近5分钟",
+    "LEVEL UP!": "升级！",
+    "Last 5 min": "近5分钟",
+    "Last capture": "最近一次截取",
+    "Left out": "已排除",
+    "Level fallback": "等级备用值",
+    "Level up!": "升级！",
+    "Level up? Making sure from the level badge...": "升级了吗？正在通过等级徽章确认……",
+    "Log this run": "记录本次",
+    "Logging this run again.": "已恢复记录本次。",
+    "Longer sideways: the level bar on top and four numbers in a row.": "横向加长：等级条在上方，四个数字排成一行。",
+    "Looking for the MapleStory window...": "正在寻找 MapleStory 窗口……",
+    "Looking for the game": "正在寻找游戏",
+    "MESOS / HR": "金币 / 小时",
+    "Map": "地图",
+    "Map name:": "地图名称：",
+    "Map names": "地图名",
+    "Map names are matched to the game's own list, so one map is one line in your log.": "地图名会与游戏自带的列表匹配，因此一张地图在你的日志中只占一行。",
+    "Map not read yet": "尚未读取到地图",
+    "MapleStory is minimized. Bring the game back up.": "MapleStory 已最小化，请将游戏窗口还原。",
+    "MapleStory window not found. Is the game running?": "未找到 MapleStory 窗口。游戏是否已运行？",
+    "Mesos": "金币",
+    "Mesos / 5 min": "金币 / 5分钟",
+    "Mesos / hr": "金币 / 小时",
+    "Mesos each. Leave a box empty to use the shown price; 0 means free.": "每个的金币价格。留空则使用显示的价格；0 表示免费。",
+    "Mesos you spend or move at an NPC shop, storage or a trade are left out. Only mesos you pick up count.": "在 NPC 商店、仓库或交易中花费或转移的金币不会计入，只统计你拾取的金币。",
+    "Mesos/hr": "金币/时",
+    "Mesos/hr you can trust": "可信的金币/小时",
+    "More": "更多",
+    "Most of the name under your character is covered, so it can't tell if it's the same character. Move what covers it.": "角色下方的名字大部分被遮住了，无法判断是否仍是同一角色。请移开遮挡物。",
+    "NEXT LEVEL": "下一级",
+    "Needs a free GitHub account. You can add pictures.": "需要免费的 GitHub 账号，可附带截图。",
+    "Net": "净值",
+    "Net / hr": "净值 / 小时",
+    "Net mesos / hr": "净金币 / 小时",
+    "Net mesos/hr: what you really make": "净金币/小时：你真正的收入",
+    "Net/hr": "净值/时",
+    "Next": "下一步",
+    "No": "否",
+    "No Reset": "不重置",
+    "No Reset is off: a new map starts new numbers again.": "「不重置」已关闭：换到新地图会重新开始计数。",
+    "No Reset is on: changing maps or going AFK won't start new numbers. These runs stay on this PC (not sent to mcwo.app).": "「不重置」已开启：换地图或挂机不会重新开始计数。这些记录只保存在本机（不会发送到 mcwo.app）。",
+    "No Reset off": "不重置：关",
+    "No Reset on": "不重置：开",
+    "No Reset: keep the numbers across maps": "不重置：换地图保持计数",
+    "No account needed. You see exactly what is sent first.": "无需账号。发送前你可以清楚看到将要发送的内容。",
+    "No logs yet. Press Start and gain EXP for 5 minutes.": "暂无日志。请点击开始，并持续获得经验 5 分钟。",
+    "No pictures are sent. To add a picture, use Report on GitHub.": "不会发送图片。如需附带图片，请使用“在 GitHub 上报告”。",
+    "Not logging": "不记录",
+    "Not logging this run.": "本次不记录。",
+    "Not needed right now: the level is read from the game by itself.": "目前不需要：等级会自动从游戏中读取。",
+    "Not now": "以后再说",
+    "Note": "备注",
+    "Notes: click a line to write one (they stay on this PC).": "备注：点击一行即可编写（仅保存在本机）。",
+    "Nothing has been read from the game yet.\n\nMake sure MapleStory is open and its EXP bar is showing.": "尚未从游戏中读取到任何内容。\n\n请确认 MapleStory 已打开且经验条可见。",
+    "Nothing new to show for this version.": "此版本没有新内容可显示。",
+    "OK": "确定",
+    "Off": "关闭",
+    "Once a day the overlay can send numbers about how well it reads your screen: never pictures, names, chat or your log. It asks you first, and you can turn it off in Settings.": "悬浮窗每天可以发送一次关于读取屏幕效果的数字：绝不包含图片、名字、聊天或你的日志。发送前会先征求你的同意，也可以随时在设置中关闭。",
+    "Once a day, send a short anonymous summary of how well the overlay is reading your game (for example how often it found the EXP bar, your game's window size and the overlay's version), so problems can be fixed even when nobody reports them.\n\nNever your character's name, chat, maps, pictures or your log. You can change this any time in Settings.": "每天发送一份简短的匿名摘要，说明悬浮窗读取你游戏的效果（例如找到经验条的频率、游戏窗口大小和悬浮窗版本），这样即使没人反馈，问题也能得到修复。\n\n绝不包含你的角色名、聊天、地图、图片或日志。你可以随时在设置中更改。",
+    "One thin strip with the main numbers and a slim level bar.": "一条细长条：显示主要数字和纤细的等级条。",
+    "Only clean 15-minute runs are shared: no shop, storage or trade during the run. Open the inventory when a run starts and right after it ends, so its mesos count too.": "只会分享干净的 15 分钟记录：期间不能有商店、仓库或交易。请在记录开始时和刚结束后打开背包，这样金币才会被计入。",
+    "Open the inventory now so your run is logged for the website.": "现在请打开背包，以便本次记录能提交到网站。",
+    "Open the inventory now to save your mesos.": "现在请打开背包以记录你的金币。",
+    "Open the inventory to set the mesos start.": "请打开背包以设定金币起点。",
+    "Open the log": "打开日志",
+    "Part of the name is hidden. It still looks like the same character.": "名字有一部分被遮住，但看起来仍是同一角色。",
+    "Party": "队伍",
+    "Past a certain level the game shows only a percentage. The overlay reads your level from the status bar and estimates EXP from it. Typing it in is only a last resort.": "超过某个等级后，游戏只显示百分比。悬浮窗会从状态栏读取你的等级并据此估算经验。手动输入只是最后的备用办法。",
+    "Past about Lv 57 (levels that need a million EXP or more), the game shows only a percentage on the EXP bar, with no EXP number. The overlay couldn't find the bar then. It does now.": "约 Lv 57 之后（升级需要一百万以上经验的等级），游戏的经验条只显示百分比，没有经验数字，悬浮窗此前找不到经验条，现在已修复。",
+    "Pause": "暂停",
+    "Pause after no EXP for": "无经验后自动暂停",
+    "Paused": "已暂停",
+    "Paused · No Reset": "已暂停 · 不重置",
+    "Paused. Logging carries on at your next EXP gain.": "已暂停。下次获得经验时继续记录。",
+    "Paused. Press Resume to carry on.": "已暂停。点击继续即可恢复。",
+    "Paused: the minimap's name can't be seen, so it can't tell which map you're on. It carries on when the minimap is back.": "已暂停：看不到小地图名称，无法判断你在哪张地图。小地图恢复后会继续。",
+    "Paused: you left the map. It carries on at your next EXP gain (from zero if that's on a different map).": "已暂停：你离开了地图。下次获得经验时会继续（若在不同地图则从零开始）。",
+    "Pausing also restarts the 5-minute log timer.": "暂停也会重置 5 分钟日志计时器。",
+    "Pick a compact look": "选择精简模式外观",
+    "Playing with this game setting on? The EXP number, party size, map name, mesos and potion counts are now read with it on too. The overlay notices it by itself after a few seconds. Checked on recordings of real play: tell me if a number looks off.": "游戏里开着这个设置？现在经验数字、队伍人数、地图名、金币和药水数量也能在该设置下正常读取，悬浮窗会在几秒后自动识别。已在真实游戏录像上验证；如果发现数字不对，请告诉我。",
+    "Please keep it shorter.": "请写得再简短一些。",
+    "Please leave out links.": "请不要包含链接。",
+    "Please write a sentence about what went wrong.": "请用一句话描述出了什么问题。",
+    "Potion bar not seen": "未看到药水栏",
+    "Potion cost": "药水花费",
+    "Potion counts now work on the controller bar (Standard or Cross-Style) as well as the keyboard bar, with the game's UI Size on Default or Ideal. You can switch while it runs: the overlay notices by itself.": "药水数量现在除键盘栏外，也支持手柄栏（标准或十字风格），游戏 UI 大小为“默认”或“理想”时均可使用。运行中可随时切换：悬浮窗会自动识别。",
+    "Potion prices": "药水价格",
+    "Potions": "药水",
+    "Potions on every bar": "支持所有药水栏",
+    "Press Start to log EXP/hr here.": "点击开始以在此记录经验/小时。",
+    "Press keys...": "请按键……",
+    "Prices": "价格",
+    "Prices are the NPC shop prices. Potions no NPC sells (Mana Elixir, Power Elixir, Sap of Ancient Tree...) count as free until you type what you pay: Settings, Potions, Prices.": "价格采用 NPC 商店价格。没有 NPC 出售的药水（魔力万能药、力量万能药、古树树液等）在你填写实际购买价之前按免费计算：设置 > 药水 > 价格。",
+    "Put the potions you use on the quick-slot bar, bottom right, so their counts show. The overlay reads that number every 3 seconds: when it goes down, that's a use. Buying or looting more is never a use.": "请把你使用的药水放在右下角的快捷栏上，这样才能显示数量。悬浮窗每 3 秒读取一次数量：数量减少就算使用一次。购买或拾取更多药水不算使用。",
+    "Reading keeps going when the map name or class can't be read, and a stuck text reader no longer freezes the display.": "地图名或职业读不出来时读取仍会继续，文字读取器卡住也不再导致界面冻结。",
+    "Reading your EXP bar": "正在读取经验条",
+    "Ready": "就绪",
+    "Ready · No Reset": "就绪 · 不重置",
+    "Ready. Press Start when you begin farming.": "就绪。开始刷怪时请点击开始。",
+    "Recent errors:": "最近的错误：",
+    "Rename map": "重命名地图",
+    "Rename map...": "重命名地图……",
+    "Report a bug": "报告错误",
+    "Report a bug, then Send to the developer. You see exactly what is sent before it goes.": "点击“报告错误”，再选择“发送给开发者”。发送之前你可以清楚看到将要发送的全部内容。",
+    "Report on GitHub": "在 GitHub 上报告",
+    "Reset": "重置",
+    "Reset. Looking for the map name, inventory and party list again...": "已重置。正在重新寻找地图名、背包和队伍列表……",
+    "Resume": "继续",
+    "Select area": "选择区域",
+    "Selected area: the level badge can't be read from here. Settings, Level fallback lets you type your level in.": "选定区域：无法从这里读取等级徽章。可在「设置 > 等级备用值」中手动输入等级。",
+    "Send": "发送",
+    "Send a report without GitHub": "无需 GitHub 也能发送报告",
+    "Send daily health reports": "每日发送运行状况报告",
+    "Send to the developer": "发送给开发者",
+    "Send to the developer now shows a report number after sending: give it on GitHub or Reddit if you'd like a reply.": "“发送给开发者”现在会在发送后显示报告编号：如果想要回复，请在 GitHub 或 Reddit 上提供该编号。",
+    "Sending is off while testing.": "测试期间已关闭发送。",
+    "Sending...": "正在发送……",
+    "Sent, thank you!": "已发送，谢谢！",
+    "Settings": "设置",
+    "Settings fits on smaller screens and scrolls. A Size too big for your screen uses the biggest that fits.": "设置窗口可适应更小的屏幕并支持滚动。大小设得超出屏幕时，会使用能放下的最大尺寸。",
+    "Size": "大小",
+    "Skip this version": "跳过此版本",
+    "Solo": "单人",
+    "Some of the program's files are missing, so EXP reading is less reliable. Please download it again.": "程序缺少部分文件，经验读取可能不够可靠，请重新下载。",
+    "Something went wrong reading the screen. Trying again... (details are in errors.log: Settings > Open data folder)": "读取屏幕时出了点问题，正在重试……（详情见 errors.log：设置 > 打开数据文件夹）",
+    "Something went wrong, but the overlay keeps running. Details are in errors.log (Settings > Open data folder).": "出了点问题，但悬浮窗仍在运行。详情见 errors.log（设置 > 打开数据文件夹）。",
+    "Something's wrong? Report a bug": "出问题了？报告错误",
+    "Square": "方形",
+    "Start": "开始",
+    "Start / Pause": "开始 / 暂停",
+    "Steadier": "更稳定",
+    "Thanks for updating. Your log, notes and settings are kept.": "感谢更新！你的日志、备注和设置都已保留。",
+    "The EXP bar is off screen.": "经验条在屏幕之外。",
+    "The EXP bar shows only a percentage, and a window is covering the level badge: move it": "经验条只显示百分比，且有窗口遮住了等级徽章：请移开它",
+    "The EXP bar shows only a percentage, and your level can't be read from the badge. Settings, Level fallback lets you type it in.": "经验条只显示百分比，且无法从徽章读取你的等级。可在「设置 > 等级备用值」中手动输入。",
+    "The EXP bar shows only a percentage. Reading your level from the badge...": "经验条只显示百分比，正在从徽章读取你的等级……",
+    "The EXP number and your party size are now read with the game's own font and the exact shape of the party list's HP bars. The older readers stay on as a backup. Checked on recordings of real play: tell me if a number looks off.": "经验数字和队伍人数现在改用游戏自己的字体和队伍列表血条的精确形状来读取，旧的读取方式仍作为备用。已在真实游戏录像上验证；如果发现数字不对，请告诉我。",
+    "The best-maps website": "最佳地图网站",
+    "The best-maps website moved to mcwo.app, with a new look and an Include new players box.": "最佳地图网站已迁移到 mcwo.app，换了新外观，并新增“包含新玩家”选项。",
+    "The bottom of the game window is off the screen, so the EXP bar can't be seen.": "游戏窗口底部超出了屏幕，因此看不到经验条。",
+    "The inventory doesn't have to stay open: open it when you start, and now and then.": "背包不需要一直打开：开始时打开一次，之后偶尔打开即可。",
+    "The name under your character is covered, so it can't tell if it's the same character. Move what covers it.": "角色下方的名字被遮住了，无法判断是否仍是同一角色。请移开遮挡物。",
+    "The narrow card: the big number, the level bar and Start/Pause.": "窄卡片：大数字、等级进度条和开始/暂停。",
+    "The orange LV badge is now read with the game's own font, for bars that show only a %.": "对于只显示 % 的经验条，橙色 LV 徽章现在改用游戏自己的字体来读取。",
+    "The overlay now counts the potions and food you drink while you farm, prices them, and takes that off your mesos/hr. That's your net mesos/hr.": "悬浮窗现在会统计你刷怪时喝掉的药水和食物，按价格折算，并从金币/小时中扣除，得到的就是净金币/小时。",
+    "The percentage wrapped around. Looking at the level badge to see if you leveled up...": "百分比绕回了起点，正在查看等级徽章以确认是否升级……",
+    "The site couldn't take this report. Please use Report on GitHub instead.": "网站无法接收此报告，请改用「在 GitHub 上报告」。",
+    "There's now a Mac download (Apple Silicon and Intel). I don't have a Mac, so I haven't tested it myself: if you try it, tell me if it works.": "现在提供 Mac 版下载（Apple Silicon 和 Intel）。我没有 Mac，所以没有亲自测试过：如果你试用了，请告诉我能否正常使用。",
+    "They also count which game UI size and potion bar layout you use, and how often the new mesos and party readers agree. Still numbers only.": "报告还会统计你使用的游戏 UI 大小和药水栏布局，以及新的金币和队伍读取器的一致程度。仍然只包含数字。",
+    "They feed the best-maps site. Your notes and log never leave this PC.": "用于汇总最佳地图网站数据。你的备注和日志绝不会离开本机。",
+    "This line was changed outside the overlay (it no longer matches the overlay's seal), so it won't count toward the best-maps site.": "这一行在悬浮窗之外被修改过（与悬浮窗的签章不再匹配），因此不会计入最佳地图网站。",
+    "This looks like another character: starting over for it.": "这看起来是另一个角色：将为其重新开始。",
+    "This run won't be logged. Logging turns back on when you leave the map or stop getting EXP.": "本次不会被记录。离开地图或停止获得经验后，记录会自动恢复。",
+    "This window is covering the EXP bar. Move it.": "本窗口遮住了经验条，请移开。",
+    "This window is covering the inventory's mesos.": "本窗口遮住了背包中的金币。",
+    "This window is covering the minimap. Move it so the map name can be read.": "本窗口遮住了小地图，请移开以便读取地图名。",
+    "This window is covering the party list.": "本窗口遮住了队伍列表。",
+    "This window is covering the potion bar.": "本窗口遮住了药水栏。",
+    "This window may be covering the minimap. Move it so the map name can be read.": "本窗口可能遮住了小地图，请移开以便读取地图名。",
+    "Time": "时间",
+    "Today": "今天",
+    "Towns are no longer logged.": "城镇不再被记录。",
+    "Tracking": "追踪中",
+    "Tracking your EXP.": "正在追踪你的经验。",
+    "Tracking your EXP. Not logging this run.": "正在追踪你的经验。本次不记录日志。",
+    "Tracking · No Reset": "追踪中 · 不重置",
+    "Transparency": "透明度",
+    "Type your level if it can't be read": "无法读取等级时手动输入",
+    "Update available": "有可用更新",
+    "Updates": "更新",
+    "Updates and sharing": "更新与分享",
+    "Use Ctrl, Alt or Shift with a number or letter, or an F key.": "请使用 Ctrl、Alt 或 Shift 加数字或字母，或使用 F 键。",
+    "Using your selected area.": "正在使用你选定的区域。",
+    "Using your selected area. Click Follow game to go back to finding it automatically.": "正在使用你选定的区域。点击「跟随游戏」可恢复自动寻找。",
+    "View capture": "查看截取",
+    "WHAT'S NEW": "新功能",
+    "Waiting": "等待中",
+    "Waiting for EXP gain...": "等待获得经验……",
+    "What it counts, and how.": "统计什么，以及怎样统计。",
+    "What went wrong?": "出了什么问题？",
+    "What will be sent  ▸": "将发送的内容  ▸",
+    "What will be sent  ▾": "将发送的内容  ▾",
+    "What's new": "新功能",
+    "Wide": "宽屏",
+    "Window": "窗口",
+    "Yes": "是",
+    "Yesterday": "昨天",
+    "You paused": "你已暂停",
+    "You pressed Start": "你按了开始",
+    "You see it in the Net / hr tile, in Details, in your log, and as \"net\" in the compact shapes. Potion data stays on your PC: it is never sent anywhere.": "你可以在“净值 / 小时”磁贴、详情、日志中看到它，在精简模式中以“净”表示。药水数据只保存在本机，绝不会发送到任何地方。",
+    "You've sent 3 reports today. Please try again tomorrow, or use Report on GitHub.": "你今天已发送 3 份报告。请明天再试，或使用「在 GitHub 上报告」。",
+    "Your browser will open a bug report on GitHub, already filled in with your version and what the overlay was reading (nothing personal).\n\n1. Write a sentence about what went wrong.\n2. Drag in the two files from the folder that opens.\n3. Click Submit.\n\nYou need a free GitHub account.": "浏览器将打开 GitHub 上的错误报告页面，其中已填好你的版本和悬浮窗读取到的内容（不含个人信息）。\n\n1. 用一句话描述出了什么问题。\n2. 把打开的文件夹里的两个文件拖进去。\n3. 点击 Submit 提交。\n\n你需要一个免费的 GitHub 账号。",
+    "Your character's level, as the game shows it:": "你的角色等级（以游戏显示为准）：",
+    "Your level changed. Press Reset to start again on the new level.": "你的等级变了。请点击重置，以新等级重新开始。",
+    "Your level is read from the orange LV badge, and EXP is worked out from it and the percentage. So EXP/hr there is an estimate, and it shows a ≈ in front.": "你的等级会从橙色 LV 徽章读取，并结合百分比推算出经验。因此这里的经验/小时是估算值，前面会显示 ≈。",
+    "Your level, read better": "更准确地读取等级",
+    "Your log is never saved over while antivirus or OneDrive holds the file for a moment.": "当杀毒软件或 OneDrive 暂时占用文件时，你的日志绝不会被覆盖。",
+    "Your own price for each one": "自定义每种药水的价格",
+    "a shop or trade": "商店或交易",
+    "a trade": "交易",
+    "known from before": "沿用之前的数值",
+    "mesos / hr": "金币 / 小时",
+    "mesos/hr": "金币/时",
+    "move this window": "请移开此窗口",
+    "no NPC": "无 NPC 出售",
+    "no clear look yet": "暂时没有清晰的画面",
+    "nothing": "无",
+    "nothing (not clear yet)": "无（还不清晰）",
+    "open inventory": "请打开背包",
+    "read from the badge": "从徽章读取",
+    "storage": "仓库",
+    "the NPC shop": "NPC 商店",
+    "typed by you": "由你输入",
+    "under 1 min": "不到1分钟",
+    "● steady": "● 平稳"
+  },
+  "patterns": [
+    [
+      "^(.+) is already running\\.$",
+      "\\1 已在运行。"
+    ],
+    [
+      "^What's new in v(.+)$",
+      "v\\1 新功能"
+    ],
+    [
+      "^v([^\\s]+) is out$",
+      "v\\1 已发布"
+    ],
+    [
+      "^You have v([^\\s]+)\\. Updating keeps your log, notes and settings\\.$",
+      "你当前是 v\\1。更新时会保留你的日志、备注和设置。"
+    ],
+    [
+      "^You're on the latest version \\(v([^)]+)\\)\\.$",
+      "你已是最新版本 (v\\1)。"
+    ],
+    [
+      "^Your log, notes and settings are saved in (.+)$",
+      "你的日志、备注和设置保存在 \\1"
+    ],
+    [
+      "^(.+) v([^\\s]+)\\. This is a beta and still being worked on\\.$",
+      "\\1 v\\2。这是测试版，仍在持续改进。"
+    ],
+    [
+      "^Tracking · Lv (\\d+)$",
+      "追踪中 · Lv \\1"
+    ],
+    [
+      "^Lv (\\d+) in (.+)$",
+      "距 Lv \\1 还需 \\2"
+    ],
+    [
+      "^TO LV (\\d+)$",
+      "距 Lv\\1"
+    ],
+    [
+      "^·  net (.+)$",
+      "·  净 \\1"
+    ],
+    [
+      "^net (.+)$",
+      "净 \\1"
+    ],
+    [
+      "^(.+?)  \\(\\+(\\d+) lvl\\)$",
+      "\\1  (+\\2 级)"
+    ],
+    [
+      "^Level up! You're now Lv (\\d+)\\.$",
+      "升级！你现在是 Lv \\1。"
+    ],
+    [
+      "^You died and lost ([0-9.]+)% EXP\\. That doesn't come out of your EXP/hr\\.$",
+      "你死亡了，损失了 \\1% 经验。这不会从你的经验/小时中扣除。"
+    ],
+    [
+      "^Using Lv (\\d+) as you typed it\\. EXP is estimated from the % until the badge can be read\\.$",
+      "正在使用你输入的 Lv \\1。在读到徽章之前，经验由 % 估算。"
+    ],
+    [
+      "^Can't estimate EXP: (.+)\\.$",
+      "无法估算经验：\\1。"
+    ],
+    [
+      "^Paused: no EXP for (\\d+) seconds, so this time doesn't count\\. It carries on at your next EXP gain\\.$",
+      "已暂停：已有 \\1 秒没有获得经验，这段时间不计入。下次获得经验时会继续。"
+    ],
+    [
+      "^Can't see the minimap's name\\. Still tracking; it pauses if this lasts (\\d+) seconds\\.$",
+      "看不到小地图名称。仍在追踪；如果持续 \\1 秒会自动暂停。"
+    ],
+    [
+      "^Error reading the screen: (.+)$",
+      "读取屏幕出错：\\1"
+    ],
+    [
+      "^Left out ([+-]?[0-9,]+) mesos \\((.+), not earned\\)\\.$",
+      "已排除 \\1 金币（\\2，非赚取）。"
+    ],
+    [
+      "^(.+) and your class can't be read from this folder because its name has unusual characters\\. Move the overlay's folder to a simple place like C:\\\\Games\\\\\\. EXP and mesos still work\\.$",
+      "\\1和你的职业无法读取，因为此文件夹的名字含有特殊字符。请把悬浮窗文件夹移到简单的位置，例如 C:\\Games\\。经验和金币仍可正常使用。"
+    ],
+    [
+      "^(.+) and your class can't be read: a file is missing from the overlay's folder \\(tessdata\\\\eng\\.traineddata\\)\\. Download the zip again and extract it\\. If it's still missing, your antivirus may have removed it\\. EXP and mesos still work\\.$",
+      "\\1和你的职业无法读取：悬浮窗文件夹中缺少文件 (tessdata\\eng.traineddata)。请重新下载压缩包并解压；如果仍然缺失，可能是杀毒软件删除了它。经验和金币仍可正常使用。"
+    ],
+    [
+      "^(.+) can't be read: Tesseract OCR is missing \\(see the README\\)\\.$",
+      "\\1无法读取：缺少 Tesseract OCR（见 README）。"
+    ],
+    [
+      "^Next log in (\\d+:\\d{2}) of non-stop EXP gain(.*)$",
+      "再不间断获得经验 \\1 即记录一次\\2"
+    ],
+    [
+      "^(\\d+)-min run: (\\d+) of (\\d+) min · (\\d+) done here today$",
+      "\\1 分钟记录：已进行 \\2 / \\3 分钟 · 今天在此已完成 \\4 次"
+    ],
+    [
+      "^(\\d+)-min run: (\\d+) of (\\d+) min$",
+      "\\1 分钟记录：已进行 \\2 / \\3 分钟"
+    ],
+    [
+      "^Note for (.+) \\(kept on this PC only\\)$",
+      "\\1 的备注（仅保存在本机）"
+    ],
+    [
+      "^A note can be ([0-9,]+) characters at most\\.$",
+      "备注最多 \\1 个字符。"
+    ],
+    [
+      "^Delete all (\\d+) party sizes$",
+      "删除全部 \\1 个队伍人数"
+    ],
+    [
+      "^Delete these (\\d+) log entries\\?(.*)$",
+      "确定删除这 \\1 条日志记录吗？\\2"
+    ],
+    [
+      "^Delete this log entry\\?(.*)$",
+      "确定删除这条日志记录吗？\\1"
+    ],
+    [
+      "^Copied: (.+)$",
+      "已复制：\\1"
+    ],
+    [
+      "^Copied (\\d+) lines, one per party size\\.$",
+      "已复制 \\1 行，每个队伍人数一行。"
+    ],
+    [
+      "^(.+?): parties of (.+?), over (.+?) of non-stop EXP gain in all\\.(.*?) Click it to (see|hide) each party size\\. Right-click to copy, rename or delete\\.$",
+      "\\1：\\2 人队伍，累计 \\3 不间断获得经验。\\4 点击可\\5各队伍人数。右键可复制、重命名或删除。"
+    ],
+    [
+      "^(.+?): measured over (.+?) of non-stop EXP gain\\.(.*?) Right-click to copy, rename or delete\\.$",
+      "\\1：测量时长 \\2（不间断获得经验）。\\3 右键可复制、重命名或删除。"
+    ],
+    [
+      "^Share my (\\d+)-minute runs, anonymously$",
+      "匿名分享我的 \\1 分钟记录"
+    ],
+    [
+      "^Bigger sizes don't fit this screen \\(you chose (\\d+)%: it's used on a bigger screen\\)\\.$",
+      "此屏幕放不下更大的尺寸（你选择了 \\1%：在更大的屏幕上会使用该尺寸）。"
+    ],
+    [
+      "^Bigger sizes don't fit this screen\\.$",
+      "此屏幕放不下更大的尺寸。"
+    ],
+    [
+      "^Hotkeys aren't available on (.+) yet: use the buttons\\.$",
+      "\\1 上暂不支持快捷键：请使用按钮。"
+    ],
+    [
+      "^Press the keys for (.+)\\. Click again or press Esc to cancel\\.$",
+      "请按下「\\1」的快捷键。再次点击或按 Esc 可取消。"
+    ],
+    [
+      "^Use (Square|Wide|Bar)$",
+      "使用\\1"
+    ],
+    [
+      "^No price for: (.+)$",
+      "没有价格：\\1"
+    ],
+    [
+      "^Share your farming, so everyone can see which maps give the most EXP for their class and level\\?\\n\\nEvery (\\d+) minutes of non-stop farming is shared: the map, your level, class and party size, and the EXP and mesos you got\\. Never your character's name\\.\\n\\nThey're combined with other players' on ([^\\s]+)\\. You can change this any time in Settings\\.$",
+      "分享你的刷怪数据，让大家都能看到各职业、各等级在哪些地图获得经验最多？\\n\\n每完成 \\1 分钟的不间断刷怪就会分享一次：包含地图、你的等级、职业和队伍人数，以及获得的经验和金币。绝不包含你的角色名。\\n\\n这些数据会与其他玩家的数据一起汇总在 \\2。你可以随时在设置中更改。"
+    ],
+    [
+      "^Also save a small picture of the whole game window\\?\\n\\nIt shows exactly what the overlay sees, which helps a lot when something can't be found\\. But it can include chat and character names, so only drag it in if you're happy with that\\. It's deleted from your data folder after (\\d+) minutes\\.\\n\\n\\(No is fine: the report works without it\\.\\)$",
+      "是否同时保存一张游戏整个窗口的小图？\\n\\n它能准确显示悬浮窗看到的内容，在找不到东西时很有帮助。但图中可能包含聊天和角色名，所以只有在你愿意的情况下才拖入。它会在 \\1 分钟后从你的数据文件夹删除。\\n\\n（选“否”也可以：报告照样能用。）"
+    ],
+    [
+      "^Please keep it under ([0-9,]+) characters\\.$",
+      "请控制在 \\1 个字符以内。"
+    ],
+    [
+      "^EXP bar\\. Read: (.+?)   \\((.+)\\)$",
+      "经验条。读到：\\1   (\\2)"
+    ],
+    [
+      "^Mesos\\. Read: (.+)$",
+      "金币。读到：\\1"
+    ],
+    [
+      "^Map name\\. Read: (.+)$",
+      "地图名。读到：\\1"
+    ],
+    [
+      "^Class\\. Read: (.+)$",
+      "职业：已读取 \\1"
+    ],
+    [
+      "^Class\\. Not read: (.+)$",
+      "职业：未读取：\\1"
+    ],
+    [
+      "^(\\d+)–(\\d+)ppl ([▾▸])$",
+      "\\1–\\2人 \\3"
+    ],
+    [
+      "^(\\d+)ppl$",
+      "\\1人"
+    ],
+    [
+      "^(\\d+)ppl party$",
+      "\\1人队伍"
+    ],
+    [
+      "^(\\d+)h (\\d{2})m$",
+      "\\1时\\2分"
+    ],
+    [
+      "^(\\d+) h (\\d{2}) min$",
+      "\\1小时\\2分钟"
+    ],
+    [
+      "^(\\d+)m$",
+      "\\1分"
+    ],
+    [
+      "^(\\d+) min$",
+      "\\1分钟"
+    ],
+    [
+      "^(\\d+)s$",
+      "\\1秒"
+    ],
+    [
+      "^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\\d+), (\\d{4})$",
+      "\\3年\\1\\2日"
+    ],
+    [
+      "^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\\d+)$",
+      "\\1\\2日"
+    ],
+    [
+      "^([+-][0-9.]+%)  vs 5 min$",
+      "\\1  对比5分钟"
+    ]
+  ],
+  "post_replace": [
+    [
+      "  (just logged)",
+      "  （刚刚已记录）"
+    ],
+    [
+      " The notes on them will be deleted too.",
+      " 其上的备注也会一并删除。"
+    ],
+    [
+      " The note on it will be deleted too.",
+      " 其上的备注也会一并删除。"
+    ],
+    [
+      " Estimated from the % (the bar shows no number; your level was typed by you).",
+      " 由 % 估算得出（经验条不显示数字；你的等级由你输入）。"
+    ],
+    [
+      " Estimated from the % (the bar shows no number; your level was read from the badge).",
+      " 由 % 估算得出（经验条不显示数字；你的等级从徽章读取）。"
+    ],
+    [
+      " Estimated from the % (the bar shows no number; your level was remembered from earlier).",
+      " 由 % 估算得出（经验条不显示数字；你的等级沿用之前的记录）。"
+    ],
+    [
+      "the NPC shop",
+      "NPC 商店"
+    ],
+    [
+      "storage",
+      "仓库"
+    ],
+    [
+      "a trade",
+      "交易"
+    ],
+    [
+      "a shop or trade",
+      "商店或交易"
+    ],
+    [
+      "使用Square",
+      "使用方形"
+    ],
+    [
+      "使用Wide",
+      "使用宽屏"
+    ],
+    [
+      "使用Bar",
+      "使用长条"
+    ],
+    [
+      "点击可see各队伍人数",
+      "点击可查看各队伍人数"
+    ],
+    [
+      "点击可hide各队伍人数",
+      "点击可收起各队伍人数"
+    ],
+    [
+      "「Start / Pause」",
+      "「开始 / 暂停」"
+    ],
+    [
+      "「Reset」",
+      "「重置」"
+    ],
+    [
+      "「Log this run」",
+      "「记录本次」"
+    ],
+    [
+      "「Compact mode」",
+      "「精简模式」"
+    ],
+    [
+      "读到：nothing",
+      "读到：无"
+    ],
+    [
+      "nothing (not clear yet)",
+      "无（还不清晰）"
+    ],
+    [
+      "not a clear look yet",
+      "暂时没有清晰的画面"
+    ]
+  ],
+  "post_patterns": [
+    [
+      " Includes (\\d+) full (\\d+)-minute runs? of non-stop farming\\.",
+      " 其中包含 \\1 次完整的 \\2 分钟不间断刷怪记录。"
+    ],
+    [
+      " This is report #(\\d+)\\. Want a reply\\? Open an issue on GitHub or DM me on Reddit with that number\\.",
+      " 这是第 \\1 号报告。想要回复吗？请在 GitHub 提 issue 或在 Reddit 私信我，并提供该编号。"
+    ],
+    [
+      "(?<![A-Za-z])Jan(?=\\d+日)",
+      "1月"
+    ],
+    [
+      "(?<![A-Za-z])Feb(?=\\d+日)",
+      "2月"
+    ],
+    [
+      "(?<![A-Za-z])Mar(?=\\d+日)",
+      "3月"
+    ],
+    [
+      "(?<![A-Za-z])Apr(?=\\d+日)",
+      "4月"
+    ],
+    [
+      "(?<![A-Za-z])May(?=\\d+日)",
+      "5月"
+    ],
+    [
+      "(?<![A-Za-z])Jun(?=\\d+日)",
+      "6月"
+    ],
+    [
+      "(?<![A-Za-z])Jul(?=\\d+日)",
+      "7月"
+    ],
+    [
+      "(?<![A-Za-z])Aug(?=\\d+日)",
+      "8月"
+    ],
+    [
+      "(?<![A-Za-z])Sep(?=\\d+日)",
+      "9月"
+    ],
+    [
+      "(?<![A-Za-z])Oct(?=\\d+日)",
+      "10月"
+    ],
+    [
+      "(?<![A-Za-z])Nov(?=\\d+日)",
+      "11月"
+    ],
+    [
+      "(?<![A-Za-z])Dec(?=\\d+日)",
+      "12月"
+    ],
+    [
+      " · (\\d+)ppl\\b",
+      " · \\1人"
+    ],
+    [
+      " · (\\d+) done here today",
+      " · 今天在此已完成 \\1 次"
+    ],
+    [
+      "(\\d+) h (\\d{2}) min",
+      "\\1小时\\2分钟"
+    ],
+    [
+      "(\\d+) min\\b",
+      "\\1分钟"
+    ],
+    [
+      "(\\d+)h (\\d{2})m\\b",
+      "\\1时\\2分"
+    ],
+    [
+      "\\b(\\d+)m\\b",
+      "\\1分"
+    ]
+  ]
+}
